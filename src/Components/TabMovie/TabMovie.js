@@ -16,6 +16,7 @@ export default function TabMovie() {
     movieService
       .getShowtimeInfoByTheater()
       .then((res) => {
+        console.log("test",res)
         setIsLoading(false)
         setDataMovie(res.data.content)
       })
@@ -25,7 +26,8 @@ export default function TabMovie() {
   }, []);
   const renderContent = () => { 
     return dataMovie.map((heThongRap,index) => { 
-     return <TabPane tab={<img src={heThongRap.logo} className="w-12" />} key={index}>
+      console.log("heThongRap",heThongRap)
+return <TabPane tab={<img src={heThongRap.logo} className="w-12" />} key={index}>
            <Tabs style={{height:"500px"}} tabPosition="left" defaultActiveKey="1" onChange={onChange} size="small">
                 {heThongRap.lstCumRap.map((cumRap,index) => { 
                      return <TabPane tab={renderTenCumRap(cumRap)} key={cumRap.maCumRap}>

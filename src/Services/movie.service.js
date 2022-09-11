@@ -15,6 +15,9 @@ export let movieService = {
       },
       getShowtimeInfoByTheater : () => { 
          return https.get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`)
+       },
+      getInfoShowTimes : (id) => { 
+         return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)
        }
 
 }
