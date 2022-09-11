@@ -51,6 +51,8 @@ export default function DetailPage() {
             }}
           />
          </div>
+
+         
           <p className="">{movie.moTa}</p>
           <button onClick={() => { setOpenTrailer(true) }} className="px-5 py-2 my-3 mr-3 bg-red-600 rounded font-bold transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 hover:bg-red-700 duration-300">
             Xem Trailer
