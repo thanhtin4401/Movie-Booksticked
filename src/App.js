@@ -7,15 +7,14 @@ import DetailPage from "./Page/DetailPage/DetailPage";
 import RegisterPage from "./Page/RegisterPage/RegisterPage";
 import SpinnerComponent from "./Components/SpinnerComponent/SpinnerComponent";
 
-// Import the functions you need from the SDKs you need
-import TrailerModal from "./Components/TrailerModal/TrailerModal";
-import NotFoundPage from "./Page/NotFoundPage/NotFoundPage";
+import NotFoundPage from './Page/NotFoundPage/NotFoundPage';
+import BookTicketsPage from './Page/BookTickets/BookTicketsPage';
 import ManangerPage from "./Page/ManagerPage/ManangerPage";
+
 
 import AddUser from "./Page/ManagerPage/AddUser/AddUser";
 import AddFilm from "./Page/ManagerPage/AddFilm/AddFilm";
 
-// Initialize Firebase
 
 function App() {
   return (
@@ -42,6 +41,8 @@ function App() {
             path="/manager/addfilm"
             element={<Layout Component={AddFilm} />}
           />
+          <Route path='/booktickets/:id' element={<Layout Component={BookTicketsPage}/>} />
+
           {/* <Route
             path="/manager/manageruserformpage/:userAccount"
             element={<Layout Component={ManagerUserFormPage} />}

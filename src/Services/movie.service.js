@@ -3,7 +3,7 @@ import { https } from "./configURL";
 export let movieService = {
   getMovieList: (movieName) => {
     return https.get(
-      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP00${
+      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06${
         movieName ? `&tenPhim=${movieName}` : ""
       }`
     );
@@ -28,4 +28,10 @@ export let movieService = {
   deleteMovie: (id) => {
     return https.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${id}`);
   },
+  getInfoShowTimes : (id) => { 
+   return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)
+ },
+ getListRoomTicket : (id) => {
+   return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`)
+ },
 };
