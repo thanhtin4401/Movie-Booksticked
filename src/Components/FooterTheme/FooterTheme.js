@@ -10,7 +10,6 @@ export default function FooterTheme() {
     movieService
       .getTheaterInfo()
       .then((res) => {
-        console.log(res);
         setTheater(res.data.content)
       })
       .catch((err) => {

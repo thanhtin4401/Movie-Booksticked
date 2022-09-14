@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { movieService } from "../../Services/movie.service";
 import { Tabs } from "antd";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 const { TabPane } = Tabs;
 
 export default function TicketModal({ open, close, id }) {
@@ -14,7 +15,6 @@ export default function TicketModal({ open, close, id }) {
     movieService
       .getInfoShowTimes(id)
       .then((res) => {
-        console.log(res.data.content.heThongRapChieu);
         setTheater(res.data.content.heThongRapChieu);
       })
       .catch((err) => {
@@ -49,12 +49,14 @@ export default function TicketModal({ open, close, id }) {
                       </div>
                       <div className="grid grid-cols-3">
                         {cumRap.lichChieuPhim.slice(0,12).map((lichChieu,index) => { 
-                          return <div className="col-span-1 m-1">
+                          return <NavLink to={`/booktickets/${lichChieu.maLichChieu}`} key={lichChieu.maLichChieu}>
+                            <div className="col-span-1 m-1">
                             <p className="bg-gray-200 text-black rounded font-bold px-2 py-2">
                             {moment(lichChieu.ngayChieuGioChieu).format('hh:mm / ')}
                             <span className='text-red-500'> {moment(lichChieu.ngayChieuGioChieu).format("DD-MM")}</span>
                             </p>
                           </div>
+                          </NavLink>
                          })}
                       </div>
                     </div>

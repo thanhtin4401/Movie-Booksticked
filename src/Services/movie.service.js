@@ -18,6 +18,10 @@ export let movieService = {
        },
       getInfoShowTimes : (id) => { 
          return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)
-       }
+       },
+       getListRoomTicket : (id) => {
+         return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`)
+       },
+
 
 }

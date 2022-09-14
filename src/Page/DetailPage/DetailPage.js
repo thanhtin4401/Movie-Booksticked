@@ -16,7 +16,6 @@ export default function DetailPage() {
     movieService
       .getMoiveDetail(id)
       .then((res) => {
-        console.log(res);
         setMovie(res.data.content);
       })
       .catch((err) => {
@@ -24,7 +23,7 @@ export default function DetailPage() {
       });
     }, []);
   return (
-    <div className="bg-main h-screen mb-12 container mx-auto">
+    <div className="bg-main h-full pb-10 mb-12 container mx-auto">
       <TrailerModal open={openTraiLer} close ={() => { setOpenTrailer(false) }} movie = {movie}/>
       <TicketModal id={id} open={openTicket}  close= {()=> {setOpenTicket(false)}}/>
       <h1 className="text-white font-bold text-2xl m-10 ">Chi Tiết Phim</h1>

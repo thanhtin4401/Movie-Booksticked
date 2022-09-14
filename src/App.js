@@ -12,6 +12,8 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import TrailerModal from './Components/TrailerModal/TrailerModal';
 import NotFoundPage from './Page/NotFoundPage/NotFoundPage';
+import BookTickets from './Page/BookTickets/BookTicketsPage';
+import BookTicketsPage from './Page/BookTickets/BookTicketsPage';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,6 +40,7 @@ function App() {
          <Routes>
           <Route path='/' element={<Layout Component={HomePage}/>} />
           <Route path='/detail/:id' element={<Layout Component={DetailPage}/>} />
+          <Route path='/booktickets/:id' element={<Layout Component={BookTicketsPage}/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/register' element={<RegisterPage/>} />
           <Route path='/*' element={<NotFoundPage/>} />
