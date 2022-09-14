@@ -1,4 +1,5 @@
 import {combineReducers} from "redux"
+import { bookTicketReducer } from "./bookTicketReducer"
 import { movieReducer } from "./movieReducer"
 import { roomTicketDetailReducer } from "./roomTicketDetailReducer"
 import { spinnerReducer } from "./spinnerReducer"
@@ -9,4 +10,5 @@ export let rootReducer = combineReducers({
     movieReducer,
     spinnerReducer,
     roomTicketDetailReducer,
+    bookTicketReducer,
 })
