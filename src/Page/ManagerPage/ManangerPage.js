@@ -8,9 +8,13 @@ import { useNavigate } from "react-router-dom";
 const { Search } = Input;
 
 function ManangerPage() {
-  const [search, setsearch] = useState(null);
-  const onSearch = (value) => {
-    setsearch(value);
+  const [searchUser, setsearchUser] = useState(null);
+  const onSearchUser = (value) => {
+    setsearchUser(value);
+  };
+  const [searchMovie, setsearchMovie] = useState(null);
+  const onSearchMovie = (value) => {
+    setsearchMovie(value);
   };
   const navigation = useNavigate();
   return (
@@ -23,7 +27,7 @@ function ManangerPage() {
                 <Space direction="vertical">
                   <Search
                     placeholder="input user name"
-                    onSearch={onSearch}
+                    onSearch={onSearchUser}
                     enterButton
                   />
                 </Space>
@@ -32,27 +36,27 @@ function ManangerPage() {
                   className="ml-2"
                   type="primary"
                   onClick={() => {
-                    navigation("/manageruserformpage");
+                    navigation("/manager/adduser");
                   }}
                 >
                   + add user
                 </Button>
               </div>
 
-              <UserTable search={search} />
+              <UserTable search={searchUser} />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Quản lý phim" key="2">
               <div className="function mb-2 flex items-center">
                 <Space direction="vertical">
                   <Search
                     placeholder="input user name"
-                    onSearch={onSearch}
+                    onSearch={onSearchMovie}
                     enterButton
                   />
                 </Space>
                 <Button
                   onClick={() => {
-                    navigation("/managermovieformpage");
+                    navigation("/manager/addfilm");
                   }}
                   className="ml-2"
                   type="primary"
@@ -61,7 +65,7 @@ function ManangerPage() {
                 </Button>
               </div>
 
-              <MovieTable />
+              <MovieTable search={searchMovie} />
             </Tabs.TabPane>
           </Tabs>
         </div>

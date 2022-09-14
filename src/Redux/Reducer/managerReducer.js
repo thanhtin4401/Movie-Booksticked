@@ -1,7 +1,7 @@
 import { GET_USER_LIST } from "../constants/managerConstant";
 
 const initialState = {
-  userList: null,
+  userList: [{}],
 };
 
 export const managerReducer = (state = initialState, { type, payload }) => {

@@ -1,54 +1,26 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { message } from "antd";
-import { Button, Modal, Space } from "antd";
-import React, { useState } from "react";
-
+import { Modal } from "antd";
+import React from "react";
+import "./MovieAction.scss";
 import { Link } from "react-router-dom";
 import { managerService } from "../../../Services/manager.service";
+import { movieService } from "../../../Services/movie.service";
 
-export default function MovieAction({ account, handleOnSuccess }) {
+export default function MovieAction({ movieID, handleOnSuccess }) {
   let handleUserDelete = () => {
-    // managerService
-    //   .deleteUser(account)
-    //   .then((res) => {
-    //     message.success("Xoá thành công");
-    //     handleOnSuccess();
-    //   })
-    //   .catch((err) => {
-    //     message.error(err.response.data.content);
-    //   });
-    // setOpen(true);
+    movieService
+      .deleteMovie(movieID)
+      .then((res) => {
+        message.success("Xoá thành công");
+        handleOnSuccess();
+      })
+      .catch((err) => {
+        message.error(err.response.data.content);
+      });
+    Modal.destroyAll();
   };
 
-  const LocalizedModal = () => {
-    const [open, setOpen] = useState(false);
-
-    const showModal = () => {
-      setOpen(true);
-    };
-
-    const hideModal = () => {
-      setOpen(false);
-    };
-
-    return (
-      <>
-        <Button type="primary" onClick={showModal}>
-          Modal
-        </Button>
-        <Modal
-          title="Modal"
-          open={open}
-          onOk={hideModal}
-          onCancel={hideModal}
-          okText="确认"
-          cancelText="取消"
-        >
-          <p>Bạn có chắc muốn xoá filmn này</p>
-        </Modal>
-      </>
-    );
-  };
   const confirm = () => {
     Modal.confirm({
       title: "Xác nhận",
@@ -56,6 +28,7 @@ export default function MovieAction({ account, handleOnSuccess }) {
       content: "Bạn có chắc muốn xoá phim này",
       okText: "Xác nhận",
       cancelText: "Huỷ",
+      onOk: handleUserDelete,
     });
   };
   return (

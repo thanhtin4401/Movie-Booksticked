@@ -8,27 +8,15 @@ import RegisterPage from "./Page/RegisterPage/RegisterPage";
 import SpinnerComponent from "./Components/SpinnerComponent/SpinnerComponent";
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import TrailerModal from "./Components/TrailerModal/TrailerModal";
 import NotFoundPage from "./Page/NotFoundPage/NotFoundPage";
 import ManangerPage from "./Page/ManagerPage/ManangerPage";
-import ManagerUserFormPage from "./Page/ManagerUserFormPage/ManagerUserFormPage";
-import ManagerMovieFormPage from "./Page/ManagerMovieFormPage/ManagerMovieFormPage";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBQjslqkz-OcryoroK_TKs49yNX_Y82bto",
-  authDomain: "movie-f5de7.firebaseapp.com",
-  projectId: "movie-f5de7",
-  storageBucket: "movie-f5de7.appspot.com",
-  messagingSenderId: "801659413088",
-  appId: "1:801659413088:web:e9eaeea65858acfc2cd905",
-  measurementId: "G-H422NB0LL6",
-};
+import AddUser from "./Page/ManagerPage/AddUser/AddUser";
+import AddFilm from "./Page/ManagerPage/AddFilm/AddFilm";
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
 function App() {
   return (
     <div>
@@ -47,13 +35,21 @@ function App() {
             element={<Layout Component={ManangerPage} />}
           />
           <Route
-            path="/manageruserformpage"
-            element={<Layout Component={ManagerUserFormPage} />}
+            path="/manager/adduser"
+            element={<Layout Component={AddUser} />}
           />
           <Route
-            path="/managermovieformpage"
-            element={<Layout Component={ManagerMovieFormPage} />}
+            path="/manager/addfilm"
+            element={<Layout Component={AddFilm} />}
           />
+          {/* <Route
+            path="/manager/manageruserformpage/:userAccount"
+            element={<Layout Component={ManagerUserFormPage} />}
+          /> */}
+          {/* <Route
+            path="/manager/managermovieformpage"
+            element={<Layout Component={ManagerMovieFormPage} />}
+          /> */}
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

@@ -4,12 +4,13 @@ import MovieAction from "./MovieAction";
 import { Table } from "antd";
 import { columns } from "../utils/movieManager.utils";
 import { movieService } from "../../../Services/movie.service";
-function MovieTable() {
+import "./MovieTable.scss";
+function MovieTable({ search }) {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
     let fetchListUser = () => {
       movieService
-        .getMovieList()
+        .getMovieList(search)
         .then((res) => {
           let movieList = res.data.content.map((movie, index) => {
             return {
@@ -18,8 +19,8 @@ function MovieTable() {
               action: (
                 <MovieAction
                   key={index}
-                  //   account={user.taiKhoan}
-                  onSuccess={fetchListUser}
+                  movieID={movie.maPhim}
+                  handleOnSuccess={fetchListUser}
                 />
               ),
             };
@@ -31,7 +32,7 @@ function MovieTable() {
         });
     };
     fetchListUser();
-  }, []);
+  }, [search]);
 
   return (
     <Table

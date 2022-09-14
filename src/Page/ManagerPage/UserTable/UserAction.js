@@ -1,9 +1,12 @@
-import { message } from "antd";
+import { message, Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { managerService } from "../../../Services/manager.service";
 
 export default function UserAction({ account, handleOnSuccess }) {
+  const navigation = useNavigate();
   let handleUserDelete = () => {
     managerService
       .deleteUser(account)
@@ -15,18 +18,32 @@ export default function UserAction({ account, handleOnSuccess }) {
         message.error(err.response.data.content);
       });
   };
-
+  const confirm = () => {
+    Modal.confirm({
+      title: "Xác nhận",
+      icon: <ExclamationCircleOutlined />,
+      content: "Bạn có chắc muốn tài khoản này",
+      okText: "Xác nhận",
+      cancelText: "Huỷ",
+      onOk: handleUserDelete,
+    });
+  };
+  const handleUpdate = () => {
+    navigation(`/manageruserformpage/${account}`);
+  };
   return (
     <div className="space-x-5 flex">
-      <Link
-        to="manageruserformpage"
+      <button
         className="bg-blue-500 rounded text-white px-5 py-3"
+        onClick={() => {
+          handleUpdate();
+        }}
       >
         Update
-      </Link>
+      </button>
       <button
         className="bg-red-500 rounded text-white px-5 py-3"
-        onClick={handleUserDelete}
+        onClick={confirm}
       >
         Delete
       </button>

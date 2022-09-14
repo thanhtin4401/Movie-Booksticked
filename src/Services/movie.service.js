@@ -1,8 +1,12 @@
 import { https } from "./configURL";
 
 export let movieService = {
-  getMovieList: () => {
-    return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06");
+  getMovieList: (movieName) => {
+    return https.get(
+      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP00${
+        movieName ? `&tenPhim=${movieName}` : ""
+      }`
+    );
   },
   getMoiveDetail: (id) => {
     return https.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);

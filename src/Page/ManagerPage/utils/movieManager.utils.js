@@ -4,7 +4,7 @@ export const columns = [
     dataIndex: "hinhAnh",
     key: "hinhAnh",
     render: (text, record) => {
-      return <img src={record.hinhAnh} />;
+      return <img className="" src={record.hinhAnh} />;
     },
   },
   {
