@@ -22,7 +22,7 @@ export let movieService = {
       `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`
     );
   },
-  postMovie: (dataMovie) => {
+  addMovie: (dataMovie) => {
     return https.post("/api/QuanLyPhim/ThemPhimUploadHinh", dataMovie);
   },
   deleteMovie: (id) => {
