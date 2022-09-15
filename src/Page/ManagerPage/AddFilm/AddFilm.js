@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Select, DatePicker, Upload, Switch } from "antd";
+
+import { Form, Input, Button, DatePicker, Switch } from "antd";
 import "./AddFilm.scss";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import moment from "moment";
+import { movieService } from "../../../Services/movie.service";
 
 const { TextArea } = Input;
 
@@ -12,25 +15,58 @@ function AddFilm() {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
-
-  const [Img, setImg] = useState({});
+  const [imgSRC, setimgSRC] = useState("");
+  const [file, setfile] = useState({});
   const onFinish = (e) => {
-    console.log(e.ngayChieu);
-    //   var data = new FormData();
-    // data.append("tenPhim", `${e.tenPhim}`);
-    // data.append("biDanh", `${e.tenPhim}`);
-    // data.append("trailer", `${e.tenPhim}`);
-    // data.append("moTa", `${e.tenPhim}`);
-    // data.append("maNhom", `${e.tenPhim}`);
-    // data.append("ngayKhoiChieu", `${e.tenPhim}`);
-    // data.append("danhGia", `${e.tenPhim}`);
-    // data.append("hot", `${e.tenPhim}`);
-    // data.append("dangChieu", `${e.tenPhim}`);
-    // data.append("sapChieu", `${e.tenPhim}`);
-    // data.append("hinhAnh", `${Img}`);
+    let ngayChieu = moment(e.ngayChieu).format("dd / mm / yyyy");
+    const infor = { ...e, ngayChieu: ngayChieu, hinhAnh: file };
+
+    const formData = new FormData();
+    formData.append("tenPhim", e.tenPhim);
+    formData.append("trailer", e.trailer);
+    formData.append("moTa", e.moTa);
+    formData.append("maNhom", "GP07");
+    formData.append("ngayKhoiChieu", ngayChieu);
+    formData.append("danhGia", e.danhGia);
+    formData.append("hot", e.hot);
+    formData.append("dangChieu", e.dangChieu);
+    formData.append("sapChieu", e.sapChieu);
+    formData.append("hinhAnh", file, file.name);
+    // for (let key in e) {
+    //   if (key !== "hinhAnh") {
+    //     formData.append(key, e[key]);
+    //   } else {
+    //     formData.append("File", file, file.name);
+    //   }
+    // }
+    // console.log(formData.get("tenphim"));
+
+    movieService
+      .addMovie(formData)
+      .then((res) => {
+        // message.success(res)
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(infor);
+      });
   };
-  const handleImg = (e) => {
-    setImg(e.file.originFileObj);
+  const handleChangeFile = (e) => {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      setimgSRC(e.target.result);
+    };
+    setfile(file);
+  };
+  const form = useForm();
+  const handleChangeDatePicked = (value) => {
+    let ngayChieu = moment(value).format("dd / mm / yyyy");
+    // form.setFileValue
+
+    form.setFieldValue("ngayCHieu", ngayChieu);
   };
 
   const navigation = useNavigate();
@@ -71,13 +107,18 @@ function AddFilm() {
           onValuesChange={onFormLayoutChange}
           onFinish={onFinish}
           autoComplete="off"
+          initialValues={{
+            sapChieu: false,
+            tenPhim: "hello",
+            ngayChieu: "",
+          }}
         >
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập tên phim" }]}
             name="tenPhim"
             label="Tên film"
           >
-            <Input />
+            <Input name="tenPhim" onChange={(e) => e.target.value} />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập bí danh" }]}
@@ -112,29 +153,33 @@ function AddFilm() {
             name="ngayChieu"
             label="Ngày chiếu"
           >
-            <DatePicker />
+            <DatePicker
+              name="ngayChieu"
+              format={"DD/MM/YYYY"}
+              onChange={handleChangeDatePicked}
+            />
           </Form.Item>
           <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
+            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
             name="sapChieu"
             label="Sắp chiếu"
             valuePropName="checked"
           >
-            <Switch />
+            <Switch name="sapChieu" onChange={(e) => e.target.value} />
           </Form.Item>
 
           <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
+            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
             name="dangChieu"
             label="Đang chiếu"
             valuePropName="checked"
           >
-            <Switch />
+            <Switch value="false" />
           </Form.Item>
           <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
+            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
             name="hot"
-            label="Hot"
+            label="Đang chiếu"
             valuePropName="checked"
           >
             <Switch />
@@ -152,22 +197,9 @@ function AddFilm() {
             label="Poster"
             valuePropName="hinhAnh"
           >
-            <Upload
-              action="/upload.do"
-              onChange={handleImg}
-              listType="picture-card"
-            >
-              <div>
-                <PlusOutlined />
-                <div
-                  style={{
-                    marginTop: 8,
-                  }}
-                >
-                  Upload
-                </div>
-              </div>
-            </Upload>
+            <input type="file" onChange={handleChangeFile} />
+            <br></br>
+            <img className="w-[150px]" src={imgSRC} alt="" />
           </Form.Item>
           <Form.Item label="Thêm">
             <Button className="text-white" htmlType="submit">

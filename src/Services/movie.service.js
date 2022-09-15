@@ -22,16 +22,16 @@ export let movieService = {
       `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`
     );
   },
-  postMovie: (dataMovie) => {
+  addMovie: (dataMovie) => {
     return https.post("/api/QuanLyPhim/ThemPhimUploadHinh", dataMovie);
   },
   deleteMovie: (id) => {
     return https.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${id}`);
   },
-  getInfoShowTimes : (id) => { 
-   return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)
- },
- getListRoomTicket : (id) => {
-   return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`)
- },
+  getInfoShowTimes: (id) => {
+    return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
+  },
+  getListRoomTicket: (id) => {
+    return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`);
+  },
 };

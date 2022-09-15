@@ -7,14 +7,14 @@ import DetailPage from "./Page/DetailPage/DetailPage";
 import RegisterPage from "./Page/RegisterPage/RegisterPage";
 import SpinnerComponent from "./Components/SpinnerComponent/SpinnerComponent";
 
-import NotFoundPage from './Page/NotFoundPage/NotFoundPage';
-import BookTicketsPage from './Page/BookTickets/BookTicketsPage';
+import NotFoundPage from "./Page/NotFoundPage/NotFoundPage";
+import BookTicketsPage from "./Page/BookTickets/BookTicketsPage";
 import ManangerPage from "./Page/ManagerPage/ManangerPage";
-
 
 import AddUser from "./Page/ManagerPage/AddUser/AddUser";
 import AddFilm from "./Page/ManagerPage/AddFilm/AddFilm";
-
+import EditUser from "./Page/ManagerPage/EditUser/EditUser";
+import EditFilm from "./Page/ManagerPage/EditFilm/EditFilm";
 
 function App() {
   return (
@@ -41,16 +41,19 @@ function App() {
             path="/manager/addfilm"
             element={<Layout Component={AddFilm} />}
           />
-          <Route path='/booktickets/:id' element={<Layout Component={BookTicketsPage}/>} />
+          <Route
+            path="/manager/adduser/:useID"
+            element={<Layout Component={EditUser} />}
+          />
+          <Route
+            path="/manager/addfilm/:movieID"
+            element={<Layout Component={EditFilm} />}
+          />
+          <Route
+            path="/booktickets/:id"
+            element={<Layout Component={BookTicketsPage} />}
+          />
 
-          {/* <Route
-            path="/manager/manageruserformpage/:userAccount"
-            element={<Layout Component={ManagerUserFormPage} />}
-          /> */}
-          {/* <Route
-            path="/manager/managermovieformpage"
-            element={<Layout Component={ManagerMovieFormPage} />}
-          /> */}
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
