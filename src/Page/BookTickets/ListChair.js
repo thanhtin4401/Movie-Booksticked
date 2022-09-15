@@ -16,7 +16,7 @@ export default function ListChair({ danhSachGhe }) {
       }
 
       return (
-        <Fragment>
+        <Fragment key={index}>
           <button
             onClick={() => { 
               dispatch({
@@ -25,7 +25,6 @@ export default function ListChair({ danhSachGhe }) {
               })
              }}
             disabled={ghe.daDat}
-            key={index}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD}`}
           >
             {ghe.daDat ? <span className="font-bold">X</span> : ghe.stt}

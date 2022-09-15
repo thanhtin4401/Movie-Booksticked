@@ -28,10 +28,13 @@ export let movieService = {
   deleteMovie: (id) => {
     return https.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${id}`);
   },
-  getInfoShowTimes : (id) => { 
-   return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)
- },
- getListRoomTicket : (id) => {
-   return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`)
- },
+  getInfoShowTimes: (id) => {
+    return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
+  },
+  getListRoomTicket: (id) => {
+    return https.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`);
+  },
+  bookTicket: (ticket) => {
+    return https.post(`/api/QuanLyDatVe/DatVe`, ticket);
+  },
 };

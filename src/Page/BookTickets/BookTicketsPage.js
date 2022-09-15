@@ -7,12 +7,13 @@ import { getRoomTicketDetailActionService } from "../../Redux/Actions/roomTicket
 import { useState } from "react";
 
 export default function BookTicketsPage() {
-  let { id } = useParams();
-
   // let history = useNavigate();
   // if(!localStorage.getItem("USER")){
-    //   return history("/login")
-    // }
+  //     return history("/login")
+  //   }
+
+  let { id } = useParams();
+
     const {roomTicketDetail} = useSelector(state => state.roomTicketDetailReducer)
     const dispatch = useDispatch();
     useEffect(() => { 
