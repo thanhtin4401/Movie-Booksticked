@@ -15,7 +15,6 @@ export default function TicketModal({ open, close, id }) {
     movieService
       .getInfoShowTimes(id)
       .then((res) => {
-        console.log(res.data.content)
         setTheater(res.data.content.heThongRapChieu);
       })
       .catch((err) => {
@@ -29,13 +28,13 @@ export default function TicketModal({ open, close, id }) {
        
       <div className="pt-20 flex items-center justify-center ">
         <div className="p-10 bg-gray-800 rounded-xl" style={{ height: "500px", width: "600px" }}>
-        <div  className="relative">
+        <div  className="">
         <button className="" onClick={close}>
           <AiOutlineClose className="font-bold text-4xl text-red-600" />
         </button>
         </div>
           <div className="p-5">
-          <Tabs tabPosition="left" defaultActiveKey="1" onChange={onChange}>
+          <Tabs tabPosition="left" defaultActiveKey="1" onChange={onChange} style={{height:"300px",overflowY:"scroll"}}>
             {theater.map((heThongRap, index) => {
               return (
                 <TabPane

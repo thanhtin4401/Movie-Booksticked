@@ -8,7 +8,6 @@ export default function ListChair({ danhSachGhe }) {
     (state) => state.bookTicketReducer
   );
   const { userInfo } = useSelector((state) => state.userReducer);
-  console.log(userInfo);
   const renderChair = () => {
     return danhSachGhe?.map((ghe, index) => {
       let classGheVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
@@ -36,7 +35,7 @@ export default function ListChair({ danhSachGhe }) {
             disabled={ghe.daDat}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDuocMinhDat}`}
           >
-            {ghe.daDat ? <span className="font-bold">X</span> : ghe.stt}
+            {ghe.daDat ? <span className="font-bold">X</span> : <span className="">{ghe.stt}</span>}
           </button>
 
           {(index + 1) % 16 === 0 ? <br /> : ""}
