@@ -22,6 +22,10 @@ export default function DetailPage() {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <div className="bg-main h-full pb-10 mb-12 container mx-auto">
       <TrailerModal open={openTraiLer} close ={() => { setOpenTrailer(false) }} movie = {movie}/>

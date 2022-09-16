@@ -3,6 +3,7 @@ import { movieService } from "../../Services/movie.service";
 import "./FooterTheme.modul.scss";
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
+import ScrollToTop from "react-scroll-to-top";
 
 export default function FooterTheme() {
   const [theater, setTheater] = useState([]);
@@ -23,6 +24,7 @@ export default function FooterTheme() {
   };
   return (
     <div style={{ backgroundColor: "#151515" }}>
+      <ScrollToTop smooth top={200} height={20} width={40} />
       <div
         style={{ borderBottom: "1px solid #666" }}
         className="grid grid-cols-4 gap-10 container mx-auto px-10 py-10 "

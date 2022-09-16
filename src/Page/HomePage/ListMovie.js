@@ -2,15 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieListActionService } from "../../Redux/Actions/movieAction";
 import "./ListMovie.modul.scss";
-import {
-  AiFillStar,
-  AiOutlinePlayCircle,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import {AiOutlineSearch} from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
-import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
-import { Tabs } from "antd";
 import { useState } from "react";
 
 export default function ListMovie() {

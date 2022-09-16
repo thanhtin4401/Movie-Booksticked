@@ -22,13 +22,14 @@ export default function Banner() {
     slidesToShow: 1,
     speed:1000,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
+    row: 0
   };
   const renderContent = () => { 
     
        return banner.map((item,index) => {
-        return  <div key={index} className=""><img className=" object-cover"style={{width:"100vw",height:"550px"}}  src={item.hinhAnh} key={index} alt="" /></div>
+        return  <div key={index} className=""><img className=" object-cover"style={{width:"100vw",height:"100%"}}  src={item.hinhAnh} key={index} alt="" /></div>
           })
     }
   return <div>

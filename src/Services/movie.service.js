@@ -3,7 +3,7 @@ import { https } from "./configURL";
 export let movieService = {
   getMovieList: (movieName) => {
     return https.get(
-      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06${
+      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02${
         movieName ? `&tenPhim=${movieName}` : ""
       }`
     );
