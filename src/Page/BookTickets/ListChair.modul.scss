@@ -9,7 +9,7 @@
     margin: 5px;
 }
 .gheDaDat {
-    background-color: rgb(63, 62, 62);
+    background-color: rgb(63, 62, 62) !important;
     cursor: no-drop;
 }
 .gheDangDat{
@@ -17,4 +17,7 @@
 }
 .gheVip{
     background-color: rgb(220, 38, 38);
+}
+.gheDuocMinhDat{
+    background-color: #e67e22 !important;
 }

@@ -15,6 +15,7 @@ export default function ListMovie() {
     dispatch(getMovieListActionService());
   }, []);
   const renderListMovie = () => {
+    console.log(movieList)
     return movieList.filter((item) => { return item.hinhAnh !== null }).map((item, index) => {
       return (
         <NavLink to={`detail/${item.maPhim}`} key={index}>

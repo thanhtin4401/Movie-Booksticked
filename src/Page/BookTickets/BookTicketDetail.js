@@ -9,23 +9,21 @@ export default function BookTicketDetail({ thongTinPhim }) {
   const { danhSachGheDangDat } = useSelector(
     (state) => state.bookTicketReducer
   );
-  console.log(danhSachGheDangDat);
-  console.log("thongTinPhim",thongTinPhim);
 
   const bookTicketBtn = () => { 
    let  data = {
     maLichChieu : id ,
     danhSachVe : danhSachGheDangDat
    } 
-   console.log(data)
    movieService.bookTicket(data)
       .then((res) => {
-           console.log(res);
-          message.success("res",res)
-
+          message.success(res.data.content)
+          setTimeout(() => { 
+            window.location.reload()
+           },2000)
       })
       .catch((err) => {
-           console.log(err);
+           message.error(err.reponse.content)
       });
   }
 

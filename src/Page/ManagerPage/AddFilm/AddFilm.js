@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Form, Input, Button, DatePicker, Switch } from "antd";
 import "./AddFilm.scss";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import moment from "moment";
 import { movieService } from "../../../Services/movie.service";
 
@@ -61,13 +60,13 @@ function AddFilm() {
     };
     setfile(file);
   };
-  const form = useForm();
-  const handleChangeDatePicked = (value) => {
-    let ngayChieu = moment(value).format("dd / mm / yyyy");
-    // form.setFileValue
+  // const form = useForm();
+  // const handleChangeDatePicked = (value) => {
+  //   let ngayChieu = moment(value).format("dd / mm / yyyy");
+  //   // form.setFileValue
 
-    form.setFieldValue("ngayCHieu", ngayChieu);
-  };
+  //   form.setFieldValue("ngayCHieu", ngayChieu);
+  // };
 
   const navigation = useNavigate();
   return (
@@ -156,7 +155,6 @@ function AddFilm() {
             <DatePicker
               name="ngayChieu"
               format={"DD/MM/YYYY"}
-              onChange={handleChangeDatePicked}
             />
           </Form.Item>
           <Form.Item

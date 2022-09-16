@@ -11,7 +11,7 @@ export const https = axios.create({
   baseURL: "https://movienew.cybersoft.edu.vn",
   headers: {
     TokenCybersoft: TOKEN,
-    Authorization: "bearer " + localStorageService.user.get()?.accessToken,
+    Authorization: "Bearer " + localStorageService.user.get()?.accessToken,
   },
 });
 
