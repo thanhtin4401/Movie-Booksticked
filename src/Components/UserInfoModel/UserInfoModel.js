@@ -6,7 +6,6 @@ import { userService } from "../../Services/user.service";
 import "./UserInfo.modul.scss"
 import moment from "moment";
 export default function UserInfoModel({ open, close }) {
-  console.log("hello ai ngao");
   const [info, setInfo] = useState([]);
   useEffect(() => {
     userService
