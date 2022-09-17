@@ -1,14 +1,17 @@
 import { message } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineLogout, MdOutlineLogin } from "react-icons/md";
 import { BsFillPersonPlusFill, BsFillPersonFill } from "react-icons/bs";
 import { localStorageService } from "../../Services/localStorageService";
 import { loginAction } from "../../Redux/Actions/userAction";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import UserInfoModel from "../UserInfoModel/UserInfoModel";
 export default function UserNav() {
   let dispatch = useDispatch();
   let history = useNavigate();
+  const [openUserInfo, setOpenUserInfo] = useState(false);
+
   let userInfo = useSelector((state) => {
     return state.userReducer.userInfo;
   });
@@ -17,13 +20,21 @@ export default function UserNav() {
     if (userInfo) {
       return (
         <div className="flex items-center space-x-5">
-          <Link
+        <UserInfoModel open={openUserInfo} close ={() => { setOpenUserInfo(false) }}/>
+          <button
             to="manager"
             className="font-bold flex items-center hover:text-red-500 transition duration-300 "
+            onClick={() => { 
+              if(userInfo.maLoaiNguoiDung === "QuanTri"){
+                history("/manager")
+              }else{
+                setOpenUserInfo(true)
+            }
+             }}
           >
             <BsFillPersonFill className="mr-2" />
             {userInfo.hoTen}
-          </Link>
+          </button>
           <button
             onClick={() => {
               localStorageService.user.remove();

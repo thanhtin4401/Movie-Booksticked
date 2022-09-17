@@ -11,20 +11,25 @@ export default function BookTicketDetail({ thongTinPhim }) {
   );
 
   const bookTicketBtn = () => { 
-   let  data = {
-    maLichChieu : id ,
-    danhSachVe : danhSachGheDangDat
-   } 
-   movieService.bookTicket(data)
-      .then((res) => {
-          message.success(res.data.content)
-          setTimeout(() => { 
-            window.location.reload()
-           },2000)
-      })
-      .catch((err) => {
-           message.error(err.reponse.content)
-      });
+    if(danhSachGheDangDat.length > 0){
+      let  data = {
+        maLichChieu : id ,
+        danhSachVe : danhSachGheDangDat
+       } 
+       movieService.bookTicket(data)
+          .then((res) => {
+              message.success(res.data.content)
+              setTimeout(() => { 
+                window.location.reload()
+               },2000)
+          })
+          .catch((err) => {
+               message.error(err.reponse.content)
+          });
+    }else{
+      message.error("Vui lòng chọn ghế")
+    }
+   
   }
 
   return (

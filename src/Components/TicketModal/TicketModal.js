@@ -4,6 +4,7 @@ import { movieService } from "../../Services/movie.service";
 import { Tabs } from "antd";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
+import "./TicketModal.modul.scss"
 const { TabPane } = Tabs;
 
 export default function TicketModal({ open, close, id }) {
@@ -27,14 +28,14 @@ export default function TicketModal({ open, close, id }) {
     <div className="fixed top-0 left-0 w-full h-full z-50 bg-black/90">
        
       <div className="pt-20 flex items-center justify-center ">
-        <div className="p-10 bg-gray-800 rounded-xl" style={{ height: "500px", width: "600px" }}>
-        <div  className="">
+        <div className="p-8 bg-gray-800 rounded-xl" style={{ height: "500px", width: "600px" }}>
+        <div  className="flex justify-end mb-3">
         <button className="" onClick={close}>
-          <AiOutlineClose className="font-bold text-4xl text-red-600" />
+          <AiOutlineClose className="font-bold text-4xl transition duration-300 text-red-600 hover:rotate-180" />
         </button>
         </div>
-          <div className="p-5">
-          <Tabs tabPosition="left" defaultActiveKey="1" onChange={onChange} style={{height:"300px",overflowY:"scroll"}}>
+          <div className="">
+          <Tabs className="tab pr-5" tabPosition="left" defaultActiveKey="1" onChange={onChange} style={{height:"350px",overflowY:"scroll",}}>
             {theater.map((heThongRap, index) => {
               return (
                 <TabPane
@@ -42,7 +43,7 @@ export default function TicketModal({ open, close, id }) {
                   tab={<img src={heThongRap.logo} className="w-12" />}
                 >
                   {heThongRap.cumRapChieu?.map((cumRap,index) => { 
-                    return <div key={index}>
+                    return <div key={index} className="">
                       <div className=" p-2 ">
                         <p className="text-green-600 font-bold text-base">{cumRap.tenCumRap}</p>
                         <p className="text-white  text-sm">{cumRap.diaChi}</p>
