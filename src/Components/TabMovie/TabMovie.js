@@ -8,7 +8,6 @@ const { TabPane } = Tabs;
 
 export default function TabMovie() {
   const onChange = (key) => {
-    console.log(key);
   };
   const [dataMovie, setDataMovie] = useState([])
   const [isLoading, setIsLoading] = useState(false)

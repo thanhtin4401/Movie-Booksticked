@@ -22,7 +22,7 @@ export default function Banner() {
     slidesToShow: 1,
     speed:1000,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 4000,
     row: 0
   };

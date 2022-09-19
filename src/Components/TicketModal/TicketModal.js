@@ -25,7 +25,7 @@ export default function TicketModal({ open, close, id }) {
  
   if (!open) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-50 bg-black/90">
+    <div className="fixed top-0 left-0 w-full h-full z-50 bg-black/90 ">
        
       <div className="pt-20 flex items-center justify-center ">
         <div className="p-8 bg-gray-800 rounded-xl" style={{ height: "500px", width: "600px" }}>
