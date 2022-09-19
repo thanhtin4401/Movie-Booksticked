@@ -16,3 +16,36 @@ export const getUserListActionService = () => {
       });
   };
 };
+
+export const deleteUserActionService = (id) => {
+  return async (dispatch) => {
+    try {
+      let res = await managerService.deleteUser(id);
+      message.success(res.data.message);
+    } catch (error) {
+      message.error(error.response.data.content);
+    }
+  };
+};
+
+export const addUserActionService = (infor) => {
+  return async (dispatch) => {
+    try {
+      let res = await managerService.addUser(id);
+      message.success(res.data.message);
+    } catch (error) {
+      message.error(error.response.data.content);
+    }
+  };
+};
+
+export const updateUserActionService = (infor) => {
+  return async (dispatch) => {
+    try {
+      let res = await managerService.updaetUser(id);
+      message.success(res.data.message);
+    } catch (error) {
+      message.error(error.response.data.content);
+    }
+  };
+};

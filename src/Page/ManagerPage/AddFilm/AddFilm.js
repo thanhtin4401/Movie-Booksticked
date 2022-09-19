@@ -1,20 +1,62 @@
 import React, { useState } from "react";
-
-import { Form, Input, Button, DatePicker, Switch } from "antd";
+import { Form, Input, Button, Tooltip, DatePicker, Switch } from "antd";
 import "./AddFilm.scss";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import moment from "moment";
-import { movieService } from "../../../Services/movie.service";
-
+import { useDispatch } from "react-redux";
+import { addMovieActionService } from "../../../Redux/Actions/movieAction";
 const { TextArea } = Input;
 
 function AddFilm() {
-  const [componentSize, setComponentSize] = useState("default");
+  const dispatch = useDispatch();
+  const formatNumber = (value) => new Intl.NumberFormat().format(value);
+  const NumericInput = (props) => {
+    const { value, onChange } = props;
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
+    const handleChange = (e) => {
+      const { value: inputValue } = e.target;
+      const reg = /^-?\d*(\.\d*)?$/;
+
+      if (reg.test(inputValue) || inputValue === "" || inputValue === "-") {
+        onChange(inputValue);
+      }
+    }; // '.' at the end or only '-' in the input box.
+
+    const handleBlur = () => {
+      let valueTemp = value;
+
+      if (value.charAt(value.length - 1) === "." || value === "-") {
+        valueTemp = value.slice(0, -1);
+      }
+
+      onChange(valueTemp.replace(/0*(\d+)/, "$1"));
+    };
+
+    const title = value ? (
+      <span className="numeric-input-title">
+        {value !== "-" ? formatNumber(Number(value)) : "-"}
+      </span>
+    ) : (
+      "Nhập đánh giá"
+    );
+    return (
+      <Tooltip
+        trigger={["focus"]}
+        title={title}
+        placement="topLeft"
+        overlayClassName="numeric-input"
+      >
+        <Input
+          {...props}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Input a number"
+          maxLength={25}
+        />
+      </Tooltip>
+    );
   };
+
   const [imgSRC, setimgSRC] = useState("");
   const [file, setfile] = useState({});
   const onFinish = (e) => {
@@ -22,52 +64,32 @@ function AddFilm() {
     const infor = { ...e, ngayChieu: ngayChieu, hinhAnh: file };
 
     const formData = new FormData();
-    formData.append("tenPhim", e.tenPhim);
-    formData.append("trailer", e.trailer);
-    formData.append("moTa", e.moTa);
-    formData.append("maNhom", "GP07");
-    formData.append("ngayKhoiChieu", ngayChieu);
-    formData.append("danhGia", e.danhGia);
-    formData.append("hot", e.hot);
-    formData.append("dangChieu", e.dangChieu);
-    formData.append("sapChieu", e.sapChieu);
-    formData.append("hinhAnh", file, file.name);
-    // for (let key in e) {
-    //   if (key !== "hinhAnh") {
-    //     formData.append(key, e[key]);
-    //   } else {
-    //     formData.append("File", file, file.name);
-    //   }
-    // }
-    // console.log(formData.get("tenphim"));
-
-    movieService
-      .addMovie(formData)
-      .then((res) => {
-        // message.success(res)
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(infor);
-      });
+    for (let key in infor) {
+      if (key !== "hinhAnh") {
+        formData.append(key, e[key]);
+      } else {
+        formData.append("hinhAnh", file);
+      }
+    }
+    dispatch(addMovieActionService(formData));
   };
   const handleChangeFile = (e) => {
     let file = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (e) => {
-      setimgSRC(e.target.result);
-    };
-    setfile(file);
+    if (
+      file.type === "image/jpeg" ||
+      file.type === "image/png" ||
+      file.type === "image/gif" ||
+      file.type === "image/jpg"
+    ) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        setimgSRC(e.target.result);
+      };
+      setfile(file);
+    }
   };
-  const form = useForm();
-  const handleChangeDatePicked = (value) => {
-    let ngayChieu = moment(value).format("dd / mm / yyyy");
-    // form.setFileValue
-
-    form.setFieldValue("ngayCHieu", ngayChieu);
-  };
+  //
 
   const navigation = useNavigate();
   return (
@@ -104,13 +126,12 @@ function AddFilm() {
             span: 14,
           }}
           layout="horizontal"
-          onValuesChange={onFormLayoutChange}
           onFinish={onFinish}
           autoComplete="off"
           initialValues={{
             sapChieu: false,
-            tenPhim: "hello",
-            ngayChieu: "",
+            hot: false,
+            dangChieu: false,
           }}
         >
           <Form.Item
@@ -145,44 +166,30 @@ function AddFilm() {
             rules={[{ required: true, message: "Vui lòng nhập đánh gía" }]}
             name="danhGia"
             label="Đánh giá"
+            type="number"
           >
-            <Input />
+            <NumericInput
+              style={{
+                width: 120,
+              }}
+            />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập ngày chiếu" }]}
             name="ngayChieu"
             label="Ngày chiếu"
           >
-            <DatePicker
-              name="ngayChieu"
-              format={"DD/MM/YYYY"}
-              onChange={handleChangeDatePicked}
-            />
+            <DatePicker name="ngayChieu" format={"DD/MM/YYYY"} />
           </Form.Item>
-          <Form.Item
-            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="sapChieu"
-            label="Sắp chiếu"
-            valuePropName="checked"
-          >
-            <Switch name="sapChieu" onChange={(e) => e.target.value} />
+          <Form.Item name="sapChieu" label="Sắp chiếu" valuePropName="checked">
+            <Switch name="sapChieu" />
           </Form.Item>
 
-          <Form.Item
-            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="dangChieu"
-            label="Đang chiếu"
-            valuePropName="checked"
-          >
-            <Switch value="false" />
+          <Form.Item name="hot" label="Hot" valuePropName="checked">
+            <Switch value="false" name="hot" defaultChecked />
           </Form.Item>
-          <Form.Item
-            // rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="hot"
-            label="Đang chiếu"
-            valuePropName="checked"
-          >
-            <Switch />
+          <Form.Item name="hot" label="Đang chiếu" valuePropName="checked">
+            <Switch value="false" name="hot" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mô tả" }]}
@@ -197,7 +204,11 @@ function AddFilm() {
             label="Poster"
             valuePropName="hinhAnh"
           >
-            <input type="file" onChange={handleChangeFile} />
+            <input
+              type="file"
+              onChange={handleChangeFile}
+              accept="image/png,image/jpeg,image/jpg,image/gif"
+            />
             <br></br>
             <img className="w-[150px]" src={imgSRC} alt="" />
           </Form.Item>
