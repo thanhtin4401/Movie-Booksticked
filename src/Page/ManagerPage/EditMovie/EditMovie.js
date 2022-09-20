@@ -1,15 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Tooltip, DatePicker, Switch } from "antd";
-import "./AddFilm.scss";
-import { useNavigate } from "react-router-dom";
+import "./EditMovie.scss";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { addMovieActionService } from "../../../Redux/Actions/movieAction";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getInforMovieActionService } from "../../../Redux/Actions/movieAction";
+
+import { useForm } from "antd/lib/form/Form";
 const { TextArea } = Input;
 
-function AddFilm() {
+function EditFilm() {
   const dispatch = useDispatch();
   const formatNumber = (value) => new Intl.NumberFormat().format(value);
+  const [defaultValue, setDefaultValue] = useState({});
+  const { movieInfor } = useSelector((state) => state.movieReducer);
+  const [form] = Form.useForm();
+  const dateFormat = "DD-MM-YYYY";
+  const { movieID } = useParams();
+  useEffect(() => {
+    dispatch(getInforMovieActionService(movieID));
+    setDefaultValue({
+      maPhim: movieID,
+      tenPhim: movieInfor?.tenPhim,
+      biDanh: movieInfor?.biDanh,
+      trailer: movieInfor?.trailer,
+      maNhom: movieInfor?.maNhom,
+      danhGia: movieInfor?.danhGia,
+      ngayKhoiChieu: moment(movieInfor?.ngayKhoiChieu),
+      moTa: movieInfor?.moTa,
+      hinhAnh: null,
+      sapChieu: movieInfor?.sapChieu,
+      hot: movieInfor?.hot,
+      dangChieu: movieInfor?.dangChieu,
+    });
+  }, [movieID]);
+  useEffect(() => {
+    form.setFieldsValue(defaultValue);
+  }, [form, defaultValue]);
+
+  // console.log(movieInfor);
+  console.log("defaulte", defaultValue);
   const NumericInput = (props) => {
     const { value, onChange } = props;
 
@@ -61,19 +92,22 @@ function AddFilm() {
   const [file, setfile] = useState({});
   const onFinish = (e) => {
     let ngayChieu = moment(e.ngayChieu).format("dd / mm / yyyy");
-    const infor = { ...e, ngayChieu: ngayChieu, hinhAnh: file };
-
+    const infor = { ...e, hinhAnh: file };
+    console.log(e.maPhim);
     const formData = new FormData();
     for (let key in infor) {
       if (key !== "hinhAnh") {
         formData.append(key, e[key]);
       } else {
-        formData.append("hinhAnh", file);
+        if (e.hinhAnh !== null) {
+          formData.append("hinhAnh", file);
+        }
       }
     }
-    dispatch(addMovieActionService(formData));
+    console.log(formData);
+    // dispatch(updateMovieActionService(formData));
   };
-  const handleChangeFile = (e) => {
+  const handleChangeFile = async (e) => {
     let file = e.target.files[0];
     if (
       file.type === "image/jpeg" ||
@@ -81,12 +115,12 @@ function AddFilm() {
       file.type === "image/gif" ||
       file.type === "image/jpg"
     ) {
+      await setfile(file);
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
         setimgSRC(e.target.result);
       };
-      setfile(file);
     }
   };
   //
@@ -113,7 +147,7 @@ function AddFilm() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            ADD FILM
+            EDIT FILM
           </h1>
         </div>
 
@@ -128,12 +162,15 @@ function AddFilm() {
           layout="horizontal"
           onFinish={onFinish}
           autoComplete="off"
-          initialValues={{
-            sapChieu: false,
-            hot: false,
-            dangChieu: false,
-          }}
+          initialValues={defaultValue}
         >
+          <Form.Item
+            rules={[{ required: true, message: "Vui lòng nhập tên phim" }]}
+            name="maPhim"
+            label="Mã phim"
+          >
+            <Input name="maPhim" onChange={(e) => e.target.value} disabled />
+          </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập tên phim" }]}
             name="tenPhim"
@@ -175,21 +212,30 @@ function AddFilm() {
             />
           </Form.Item>
           <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập ngày chiếu" }]}
-            name="ngayChieu"
+            // rules={[{ required: true, message: "Vui lòng nhập ngày chiếu" }]}
+            name="ngayKhoiChieu"
             label="Ngày chiếu"
           >
-            <DatePicker name="ngayChieu" format={"DD/MM/YYYY"} />
+            <DatePicker
+              // value={moment(movieInfor.ngayKhoiChieu, "DD/MM/YYYY")}
+              name="ngayKhoiChieu"
+              format={dateFormat}
+              defaultValue={moment(movieInfor.ngayKhoiChieu, dateFormat)}
+            />
           </Form.Item>
           <Form.Item name="sapChieu" label="Sắp chiếu" valuePropName="checked">
             <Switch name="sapChieu" />
           </Form.Item>
 
           <Form.Item name="hot" label="Hot" valuePropName="checked">
-            <Switch value="false" name="hot" defaultChecked />
+            <Switch name="hot" defaultChecked />
           </Form.Item>
-          <Form.Item name="hot" label="Đang chiếu" valuePropName="checked">
-            <Switch value="false" name="hot" />
+          <Form.Item
+            name="dangChieu"
+            label="Đang chiếu"
+            valuePropName="checked"
+          >
+            <Switch name="dangChieu" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mô tả" }]}
@@ -210,11 +256,15 @@ function AddFilm() {
               accept="image/png,image/jpeg,image/jpg,image/gif"
             />
             <br></br>
-            <img className="w-[150px]" src={imgSRC} alt="" />
+            <img
+              className="w-[150px]"
+              src={imgSRC === "" ? movieInfor.hinhAnh : imgSRC}
+              alt=""
+            />
           </Form.Item>
           <Form.Item label="Thêm">
             <Button className="text-white" htmlType="submit">
-              Thêm
+              Cập nhật
             </Button>
             <Button
               onClick={() => {
@@ -232,4 +282,4 @@ function AddFilm() {
   );
 }
 
-export default AddFilm;
+export default EditFilm;

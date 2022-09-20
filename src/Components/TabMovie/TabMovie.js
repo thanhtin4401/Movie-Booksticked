@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { movieService } from "../../Services/movie.service";
 import SpinnerComponent from "../SpinnerComponent/SpinnerComponent";
 import ItemTabMovie from "./ItemTabMovie";
+import "./TabMovie.modul.scss"
 const { TabPane } = Tabs;
 
 export default function TabMovie() {
@@ -26,10 +27,10 @@ export default function TabMovie() {
   const renderContent = () => { 
     return dataMovie.map((heThongRap,index) => { 
     return <TabPane tab={<img src={heThongRap.logo} className="w-12" />} key={index}>
-           <Tabs style={{height:"500px"}} tabPosition="left" defaultActiveKey="1" onChange={onChange} size="small">
+           <Tabs  style={{height:"500px"}} tabPosition="left" defaultActiveKey="1" onChange={onChange} size="small">
                 {heThongRap.lstCumRap.map((cumRap,index) => { 
                      return <TabPane tab={renderTenCumRap(cumRap)} key={cumRap.maCumRap}>
-                              <div style={{height:"500px",overflowY:"scroll"}}>
+                              <div className="tab" style={{height:"500px",overflowY:"scroll"}}>
                                     {cumRap.danhSachPhim.map((phim) => { 
                                       return <ItemTabMovie phim={phim} key={phim.maPhim}/>;
                                      })}

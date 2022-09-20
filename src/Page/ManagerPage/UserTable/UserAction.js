@@ -28,19 +28,15 @@ export default function UserAction({ account, handleOnSuccess }) {
       onOk: handleUserDelete,
     });
   };
-  const handleUpdate = () => {
-    navigation(`/manageruserformpage/${account}`);
-  };
+
   return (
     <div className="space-x-5 flex">
-      <button
+      <Link
+        to={`/manager/edituser/${account}`}
         className="bg-blue-500 rounded text-white px-5 py-3"
-        onClick={() => {
-          handleUpdate();
-        }}
       >
         Update
-      </button>
+      </Link>
       <button
         className="bg-red-500 rounded text-white px-5 py-3"
         onClick={confirm}

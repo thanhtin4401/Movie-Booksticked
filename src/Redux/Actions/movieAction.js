@@ -32,7 +32,6 @@ export const updateMovieActionService = (formData) => {
   return async (dispatch) => {
     try {
       let res = await movieService.updateMovie(formData);
-
       message.success(res.data.message);
     } catch (error) {
       message.error(error.response.data.content);

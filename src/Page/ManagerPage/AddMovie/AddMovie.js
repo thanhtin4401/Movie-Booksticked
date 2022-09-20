@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Tooltip, DatePicker, Switch } from "antd";
-import "./EditFilm.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import "./AddMovie.scss";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
-
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addMovieActionService,
-  getInforMovieActionService,
-} from "../../../Redux/Actions/movieAction";
-import useSelection from "antd/lib/table/hooks/useSelection";
+import { useDispatch } from "react-redux";
+import { addMovieActionService } from "../../../Redux/Actions/movieAction";
 const { TextArea } = Input;
 
-function EditFilm() {
+function AddMovie() {
   const dispatch = useDispatch();
   const formatNumber = (value) => new Intl.NumberFormat().format(value);
-  const { movieInfor } = useSelector((state) => state.movieReducer);
-  const dateFormat = "DD-MM-YYYY";
-  const { movieID } = useParams();
-  useEffect(() => {
-    dispatch(getInforMovieActionService(movieID));
-  }, []);
-  console.log(movieInfor);
   const NumericInput = (props) => {
     const { value, onChange } = props;
 
@@ -125,7 +113,7 @@ function EditFilm() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            EDIT FILM
+            ADD FILM
           </h1>
         </div>
 
@@ -141,17 +129,9 @@ function EditFilm() {
           onFinish={onFinish}
           autoComplete="off"
           initialValues={{
-            tenPhim: movieInfor?.tenPhim,
-            biDanh: movieInfor?.biDanh,
-            trailer: movieInfor?.trailer,
-            maNhom: movieInfor?.maNhom,
-            danhGia: movieInfor?.danhGia,
-            ngayKhoiChieu: movieInfor?.ngay,
-            moTa: movieInfor?.moTa,
-            hinhAnh: null,
-            sapChieu: movieInfor?.sapChieu,
-            hot: movieInfor?.hot,
-            dangChieu: movieInfor?.dangChieu,
+            sapChieu: false,
+            hot: false,
+            dangChieu: false,
           }}
         >
           <Form.Item
@@ -196,29 +176,20 @@ function EditFilm() {
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập ngày chiếu" }]}
-            name="ngayKhoiChieu"
+            name="ngayChieu"
             label="Ngày chiếu"
           >
-            <DatePicker
-              // value={moment(movieInfor.ngayKhoiChieu, "DD/MM/YYYY")}
-              name="ngayKhoiChieu"
-              format={dateFormat}
-              defaultValue={moment("2019-07-29", dateFormat)}
-            />
+            <DatePicker name="ngayChieu" format={"DD/MM/YYYY"} />
           </Form.Item>
           <Form.Item name="sapChieu" label="Sắp chiếu" valuePropName="checked">
             <Switch name="sapChieu" />
           </Form.Item>
 
           <Form.Item name="hot" label="Hot" valuePropName="checked">
-            <Switch name="hot" defaultChecked />
+            <Switch value="false" name="hot" defaultChecked />
           </Form.Item>
-          <Form.Item
-            name="dangChieu"
-            label="Đang chiếu"
-            valuePropName="checked"
-          >
-            <Switch name="dangChieu" />
+          <Form.Item name="hot" label="Đang chiếu" valuePropName="checked">
+            <Switch value="false" name="hot" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mô tả" }]}
@@ -239,11 +210,7 @@ function EditFilm() {
               accept="image/png,image/jpeg,image/jpg,image/gif"
             />
             <br></br>
-            <img
-              className="w-[150px]"
-              src={imgSRC === "" ? movieInfor.hinhAnh : imgSRC}
-              alt=""
-            />
+            <img className="w-[150px]" src={imgSRC} alt="" />
           </Form.Item>
           <Form.Item label="Thêm">
             <Button className="text-white" htmlType="submit">
@@ -265,4 +232,4 @@ function EditFilm() {
   );
 }
 
-export default EditFilm;
+export default AddMovie;

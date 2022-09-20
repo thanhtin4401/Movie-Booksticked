@@ -27,7 +27,7 @@ export default function MovieAction({ movieID, handleOnSuccess }) {
   return (
     <div className="space-x-5 flex">
       <Link
-        to={`/manager/addfilm/${movieID}`}
+        to={`/manager/editfilm/${movieID}`}
         className="bg-blue-500 rounded text-white px-5 py-3"
       >
         Update
