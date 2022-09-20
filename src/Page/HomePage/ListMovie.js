@@ -17,6 +17,7 @@ export default function ListMovie() {
     dispatch(getMovieListActionService());
   }, []);
   const renderListMovie = () => {
+    console.log(movieList)
     return movieList
       .filter((item) =>
         item.tenPhim.toLowerCase().includes(search.toLowerCase())
