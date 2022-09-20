@@ -27,7 +27,7 @@ export default function FooterTheme() {
       <ScrollToTop smooth top={200} height={20} width={40} />
       <div
         style={{ borderBottom: "1px solid #666" }}
-        className="grid grid-cols-4 gap-10 container mx-auto px-10 py-10 "
+        className="grid mb:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 container mx-auto px-10 py-10 "
       >
         <div className="col">
           <h1 className="text-white font-bold text-base">Quy Định</h1>

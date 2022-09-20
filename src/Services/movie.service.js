@@ -28,6 +28,12 @@ export let movieService = {
   deleteMovie: (id) => {
     return https.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${id}`);
   },
+  getInforMovie: (id) => {
+    return https.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
+  },
+  updateMovie: (formData) => {
+    return https.post("api/QuanLyPhim/CapNhatPhimUpload", formData);
+  },
   getInfoShowTimes: (id) => {
     return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
   },

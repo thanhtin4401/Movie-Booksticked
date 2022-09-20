@@ -43,7 +43,7 @@ function EditUser() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            Add user
+            Edit user
           </h1>
         </div>
 
@@ -108,7 +108,7 @@ function EditUser() {
 
           <Form.Item label="Thêm">
             <Button className="text-white" htmlType="submit">
-              Thêm
+              Cập nhật
             </Button>
             <Button
               onClick={() => {

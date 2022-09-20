@@ -14,4 +14,7 @@ export let managerService = {
   addUser: (inforUser) => {
     return https.post("api/QuanLyNguoiDung/DangKy", inforUser);
   },
+  updateUser: (inforUser) => {
+    return https.post("api/QuanLyNguoiDung/DangKy", inforUser);
+  },
 };
