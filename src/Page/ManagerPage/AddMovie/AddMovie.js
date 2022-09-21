@@ -1,37 +1,95 @@
 import React, { useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Select, DatePicker, Upload, Switch } from "antd";
-import "./EditFilm.scss";
+import { Form, Input, Button, Tooltip, DatePicker, Switch } from "antd";
+import "./AddMovie.scss";
 import { useNavigate } from "react-router-dom";
-
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { addMovieActionService } from "../../../Redux/Actions/movieAction";
 const { TextArea } = Input;
 
-function EditFilm() {
-  const [componentSize, setComponentSize] = useState("default");
+function AddMovie() {
+  const dispatch = useDispatch();
+  const formatNumber = (value) => new Intl.NumberFormat().format(value);
+  const NumericInput = (props) => {
+    const { value, onChange } = props;
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
+    const handleChange = (e) => {
+      const { value: inputValue } = e.target;
+      const reg = /^-?\d*(\.\d*)?$/;
+
+      if (reg.test(inputValue) || inputValue === "" || inputValue === "-") {
+        onChange(inputValue);
+      }
+    }; // '.' at the end or only '-' in the input box.
+
+    const handleBlur = () => {
+      let valueTemp = value;
+
+      if (value.charAt(value.length - 1) === "." || value === "-") {
+        valueTemp = value.slice(0, -1);
+      }
+
+      onChange(valueTemp.replace(/0*(\d+)/, "$1"));
+    };
+
+    const title = value ? (
+      <span className="numeric-input-title">
+        {value !== "-" ? formatNumber(Number(value)) : "-"}
+      </span>
+    ) : (
+      "Nhập đánh giá"
+    );
+    return (
+      <Tooltip
+        trigger={["focus"]}
+        title={title}
+        placement="topLeft"
+        overlayClassName="numeric-input"
+      >
+        <Input
+          {...props}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Input a number"
+          maxLength={25}
+        />
+      </Tooltip>
+    );
   };
 
-  const [Img, setImg] = useState({});
+  const [imgSRC, setimgSRC] = useState("");
+  const [file, setfile] = useState({});
   const onFinish = (e) => {
-    console.log(e.ngayChieu);
-    //   var data = new FormData();
-    // data.append("tenPhim", `${e.tenPhim}`);
-    // data.append("biDanh", `${e.tenPhim}`);
-    // data.append("trailer", `${e.tenPhim}`);
-    // data.append("moTa", `${e.tenPhim}`);
-    // data.append("maNhom", `${e.tenPhim}`);
-    // data.append("ngayKhoiChieu", `${e.tenPhim}`);
-    // data.append("danhGia", `${e.tenPhim}`);
-    // data.append("hot", `${e.tenPhim}`);
-    // data.append("dangChieu", `${e.tenPhim}`);
-    // data.append("sapChieu", `${e.tenPhim}`);
-    // data.append("hinhAnh", `${Img}`);
+    let ngayChieu = moment(e.ngayChieu).format("dd / mm / yyyy");
+    const infor = { ...e, ngayChieu: ngayChieu, hinhAnh: file };
+
+    const formData = new FormData();
+    for (let key in infor) {
+      if (key !== "hinhAnh") {
+        formData.append(key, e[key]);
+      } else {
+        formData.append("hinhAnh", file);
+      }
+    }
+    dispatch(addMovieActionService(formData));
   };
-  const handleImg = (e) => {
-    setImg(e.file.originFileObj);
+  const handleChangeFile = (e) => {
+    let file = e.target.files[0];
+    if (
+      file.type === "image/jpeg" ||
+      file.type === "image/png" ||
+      file.type === "image/gif" ||
+      file.type === "image/jpg"
+    ) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        setimgSRC(e.target.result);
+      };
+      setfile(file);
+    }
   };
+  //
 
   const navigation = useNavigate();
   return (
@@ -68,16 +126,20 @@ function EditFilm() {
             span: 14,
           }}
           layout="horizontal"
-          onValuesChange={onFormLayoutChange}
           onFinish={onFinish}
           autoComplete="off"
+          initialValues={{
+            sapChieu: false,
+            hot: false,
+            dangChieu: false,
+          }}
         >
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập tên phim" }]}
             name="tenPhim"
             label="Tên film"
           >
-            <Input />
+            <Input name="tenPhim" onChange={(e) => e.target.value} />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập bí danh" }]}
@@ -104,40 +166,30 @@ function EditFilm() {
             rules={[{ required: true, message: "Vui lòng nhập đánh gía" }]}
             name="danhGia"
             label="Đánh giá"
+            type="number"
           >
-            <Input />
+            <NumericInput
+              style={{
+                width: 120,
+              }}
+            />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập ngày chiếu" }]}
             name="ngayChieu"
             label="Ngày chiếu"
           >
-            <DatePicker />
+            <DatePicker name="ngayChieu" format={"DD/MM/YYYY"} />
           </Form.Item>
-          <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="sapChieu"
-            label="Sắp chiếu"
-            valuePropName="checked"
-          >
-            <Switch />
+          <Form.Item name="sapChieu" label="Sắp chiếu" valuePropName="checked">
+            <Switch name="sapChieu" />
           </Form.Item>
 
-          <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="dangChieu"
-            label="Đang chiếu"
-            valuePropName="checked"
-          >
-            <Switch />
+          <Form.Item name="hot" label="Hot" valuePropName="checked">
+            <Switch value="false" name="hot" defaultChecked />
           </Form.Item>
-          <Form.Item
-            rules={[{ required: true, message: "Vui lòng nhập giá trị" }]}
-            name="hot"
-            label="Hot"
-            valuePropName="checked"
-          >
-            <Switch />
+          <Form.Item name="hot" label="Đang chiếu" valuePropName="checked">
+            <Switch value="false" name="hot" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mô tả" }]}
@@ -152,22 +204,13 @@ function EditFilm() {
             label="Poster"
             valuePropName="hinhAnh"
           >
-            <Upload
-              action="/upload.do"
-              onChange={handleImg}
-              listType="picture-card"
-            >
-              <div>
-                <PlusOutlined />
-                <div
-                  style={{
-                    marginTop: 8,
-                  }}
-                >
-                  Upload
-                </div>
-              </div>
-            </Upload>
+            <input
+              type="file"
+              onChange={handleChangeFile}
+              accept="image/png,image/jpeg,image/jpg,image/gif"
+            />
+            <br></br>
+            <img className="w-[150px]" src={imgSRC} alt="" />
           </Form.Item>
           <Form.Item label="Thêm">
             <Button className="text-white" htmlType="submit">
@@ -189,4 +232,4 @@ function EditFilm() {
   );
 }
 
-export default EditFilm;
+export default AddMovie;

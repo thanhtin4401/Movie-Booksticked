@@ -9,6 +9,11 @@ export const columns = [
     },
   },
   {
+    title: "Tên phim",
+    dataIndex: "tenPhim",
+    key: "tenPhim",
+  },
+  {
     title: "Bí danh",
     dataIndex: "biDanh",
     key: "biDanh",

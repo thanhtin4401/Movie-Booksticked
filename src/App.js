@@ -12,9 +12,9 @@ import BookTicketsPage from "./Page/BookTickets/BookTicketsPage";
 import ManangerPage from "./Page/ManagerPage/ManangerPage";
 
 import AddUser from "./Page/ManagerPage/AddUser/AddUser";
-import AddFilm from "./Page/ManagerPage/AddFilm/AddFilm";
+import AddMovie from "./Page/ManagerPage/AddMovie/AddMovie";
 import EditUser from "./Page/ManagerPage/EditUser/EditUser";
-import EditFilm from "./Page/ManagerPage/EditFilm/EditFilm";
+import EditMovie from "./Page/ManagerPage/EditMovie/EditMovie";
 
 function App() {
   return (
@@ -38,16 +38,16 @@ function App() {
             element={<Layout Component={AddUser} />}
           />
           <Route
-            path="/manager/addfilm"
-            element={<Layout Component={AddFilm} />}
+            path="/manager/addmovie"
+            element={<Layout Component={AddMovie} />}
           />
           <Route
-            path="/manager/adduser/:useID"
+            path="/manager/edituser/:useID"
             element={<Layout Component={EditUser} />}
           />
           <Route
-            path="/manager/addfilm/:movieID"
-            element={<Layout Component={EditFilm} />}
+            path="/manager/editmovie/:movieID"
+            element={<Layout Component={EditMovie} />}
           />
           <Route
             path="/booktickets/:id"

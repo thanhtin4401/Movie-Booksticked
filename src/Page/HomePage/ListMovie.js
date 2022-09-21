@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieListActionService } from "../../Redux/Actions/movieAction";
 import "./ListMovie.modul.scss";
-import {AiOutlineSearch} from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
@@ -18,8 +18,10 @@ export default function ListMovie() {
   }, []);
   const renderListMovie = () => {
     return movieList
-      .filter((item) => item.tenPhim.toLowerCase().includes(search.toLowerCase()))
-      .filter((item) =>  item.hinhAnh !== null )
+      .filter((item) =>
+        item.tenPhim.toLowerCase().includes(search.toLowerCase())
+      )
+      .filter((item) => item.hinhAnh !== null)
       .map((item, index) => {
         return (
           <NavLink to={`detail/${item.maPhim}`} key={index}>
@@ -41,7 +43,9 @@ export default function ListMovie() {
           <AiOutlineSearch className="font-bold text-2xl" />
         </button>
       </div>
-      <div className="grid grid-cols-5 gap-5 mx-20">{renderListMovie()}</div>
+      <div className="grid mb:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb:mx-10 md:mx-10 lg:mx-20">
+        {renderListMovie()}
+      </div>
     </div>
   );
 }
