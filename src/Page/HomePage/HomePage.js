@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../../Components/Banner/Banner'
 import TabMovie from '../../Components/TabMovie/TabMovie'
-import TrailerModal from '../../Components/TrailerModal/TrailerModal'
+import CommingSoonMovie from './CommingSoonMovie'
 import ListMovie from './ListMovie'
 
 export default function HomePage() {
@@ -9,7 +9,9 @@ export default function HomePage() {
     <div className=''>
         <Banner/>
         <ListMovie/>
+        <CommingSoonMovie/>
         <TabMovie/>
+
     </div>
   )
 }

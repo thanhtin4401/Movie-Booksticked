@@ -27,7 +27,7 @@ export default function DetailPage() {
   }, []);
 
   return (
-    <div className="bg-main h-full pb-10 mb-12 container mx-auto">
+    <div className="bg-main h-full py-10 mb-12 container mx-auto">
       <TrailerModal
         open={openTraiLer}
         close={() => {

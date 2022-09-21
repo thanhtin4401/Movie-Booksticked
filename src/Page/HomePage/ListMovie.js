@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
 
+
 export default function ListMovie() {
   let dispatch = useDispatch();
   let { movieList } = useSelector((state) => {
