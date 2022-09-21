@@ -21,9 +21,9 @@ export default function UserInfoModel({ open, close }) {
   console.log(info);
   const renderTable = () => { 
    return info.thongTinDatVe?.map((ticket,index) => { 
-      return <tr className="" key={index}>
+      return <tr className="" key={ticket.maVe}>
         <td className="text-white"><span className="font-bold">{ticket.tenPhim}</span></td>
-        <td className="text-white"><span className="">{ticket.giaVe.toLocaleString()} VND</span></td>
+        {/* <td className="text-white"><span className="">{ticket.giaVe.toLocaleString()} VND</span></td> */}
         <td className="text-white">{ticket.danhSachGhe.tenHeThongRap}</td>
         <td className="text-white"></td>
         <td className="text-white">{ticket.danhSachGhe.map((ghe,index) => { 
@@ -84,7 +84,7 @@ export default function UserInfoModel({ open, close }) {
             <thead className="">
               <tr className="text-green-600 text-left">
                 <th>Tên Phim</th>
-                <th>Giá Vé</th>
+                {/* <th>Giá Vé</th> */}
                 <th>Tên Rạp</th>
                 <th>Mã Rạp</th>
                 <th>Ghế</th>
