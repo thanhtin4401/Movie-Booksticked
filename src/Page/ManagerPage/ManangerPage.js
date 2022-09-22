@@ -19,7 +19,7 @@ function ManangerPage() {
   const navigation = useNavigate();
   return (
     <div className="warrapped bg-white ">
-      <div className="container bg-white mx-auto  my-7">
+      <div className="container mt-[5rem] bg-white mx-auto  my-7">
         <div className="mx-[40px] bg-white">
           <Tabs className="text-2xl" defaultActiveKey="1">
             <Tabs.TabPane tab="Quản lý người dùng" key="1">

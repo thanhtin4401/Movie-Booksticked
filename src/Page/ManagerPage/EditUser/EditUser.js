@@ -1,27 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { Form, Input, Button, message, Radio } from "antd";
+import { Form, Input, Button, Radio } from "antd";
 import "./EditUser.scss";
-import { useNavigate } from "react-router-dom";
-import { managerService } from "../../../Services/manager.service";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-const { TextArea } = Input;
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  getUserActionService,
+  updateUserActionService,
+} from "../../../Redux/Actions/listUserAction";
 
 function EditUser() {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
+  const { userID } = useParams();
 
+  const { userInfor } = useSelector((state) => state.managerReducer);
+  const [form] = Form.useForm();
   const onFinish = (e) => {
-    const data = { ...e, maNhom: "GP00" };
-
-    managerService
-      .addUser(data)
-      .then((res) => {
-        message.success(res.data.message);
-      })
-      .catch((err) => {
-        message.error(err.response.data.content);
-      });
+    const formData = { ...e, maNhom: "GP00" };
+    dispatch(updateUserActionService(formData));
   };
+  useEffect(() => {
+    dispatch(getUserActionService(userID));
+  }, [userID]);
+
+  useEffect(() => {
+    userInfor &&
+      form.setFieldsValue({
+        taiKhoan: userInfor?.taiKhoan,
+        matKhau: userInfor?.matKhau,
+        hoTen: userInfor?.hoTen,
+        email: userInfor?.email,
+        soDT: userInfor?.soDT,
+        maLoaiNguoiDung: userInfor.maLoaiNguoiDung,
+      });
+  }, [form, userInfor]);
 
   return (
     <div className="w-full bg-white">
@@ -48,6 +62,7 @@ function EditUser() {
         </div>
 
         <Form
+          form={form}
           id="myForm"
           labelCol={{
             span: 4,
@@ -101,8 +116,8 @@ function EditUser() {
             label="Loại"
           >
             <Radio.Group>
-              <Radio value="apple"> Quản trị </Radio>
-              <Radio value="pear"> Khách hàng </Radio>
+              <Radio value="QuanTri"> Quản trị </Radio>
+              <Radio value="KhachHang"> Khách hàng </Radio>
             </Radio.Group>
           </Form.Item>
 

@@ -15,6 +15,14 @@ export let managerService = {
     return https.post("api/QuanLyNguoiDung/DangKy", inforUser);
   },
   updateUser: (inforUser) => {
-    return https.post("api/QuanLyNguoiDung/DangKy", inforUser);
+    return https.post(
+      "api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      inforUser
+    );
+  },
+  getDetailUser: (account) => {
+    return https.post(
+      `api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${account}`
+    );
   },
 };

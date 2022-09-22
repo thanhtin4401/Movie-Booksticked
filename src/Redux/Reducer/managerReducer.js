@@ -1,7 +1,8 @@
-import { GET_USER_LIST } from "../constants/managerConstant";
+import { GET_INFOR_USER, GET_USER_LIST } from "../constants/managerConstant";
 
 const initialState = {
-  userList: [{}],
+  userList: [],
+  userInfor: [],
 };
 
 export const managerReducer = (state = initialState, { type, payload }) => {
@@ -10,7 +11,10 @@ export const managerReducer = (state = initialState, { type, payload }) => {
       state.userList = payload;
       return { ...state };
     }
-
+    case GET_INFOR_USER: {
+      state.userInfor = payload;
+      return { ...state };
+    }
     default:
       return state;
   }

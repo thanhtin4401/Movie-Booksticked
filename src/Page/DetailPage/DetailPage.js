@@ -26,7 +26,7 @@ export default function DetailPage() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="bg-main h-full py-10 mb-12 container mx-auto">
+    <div className="bg-main h-screen pb-10 container mx-auto">
       <TrailerModal
         open={openTraiLer}
         close={() => {
@@ -41,21 +41,24 @@ export default function DetailPage() {
           setOpenTicket(false);
         }}
       />
-      <h1 className="text-white font-bold text-2xl m-10 ">Chi Tiết Phim</h1>
+
       <div className="detail-content mb:block sm:block lg:flex gap-10 mx-10">
         <img src={movie.hinhAnh} alt="" className="detail-img rounded-xl" />
         <div className="title p-5 mb:w-full lg:w-1/2">
           <h1 className="text-white font-bold text-xl uppercase">
-            <span className="text-yellow-500">Tên Phim:</span> {movie.tenPhim}
+            <span className="text-yellow-500">Tên Phim: </span> {movie.tenPhim}
           </h1>
           <h1 className="text-white my-3 font-bold">
             <span className="text-yellow-500">Ngày Chiếu:</span>{" "}
             {moment(movie.ngayKhoiChieu).format("hh:mm:ss / DD-MM-YYYY ")}
           </h1>
           <div className="rating  my-3">
-            <h1 className="text-yellow-500 font-bold flex">Đánh Giá: <span className="text-yellow-500 ml-2 font-bold text-sm flex items-center">
-                    {movie.danhGia} <AiFillStar />
-                  </span> </h1>
+            <h1 className="text-yellow-500 font-bold flex">
+              Đánh Giá:{" "}
+              <span className="text-yellow-500 ml-2 font-bold text-sm flex items-center">
+                {movie.danhGia} <AiFillStar />
+              </span>{" "}
+            </h1>
             {/* <Progress
               strokeColor={{
                 "0%": " rgb(220 38 38)",
@@ -70,7 +73,6 @@ export default function DetailPage() {
                 );
               }}
             /> */}
-            
           </div>
 
           <p className="">{movie.moTa}</p>
