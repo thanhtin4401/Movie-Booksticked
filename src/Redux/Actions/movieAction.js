@@ -64,3 +64,14 @@ export const getInforMovieActionService = (id) => {
     }
   };
 };
+
+export const createCalendarMovie = (calendarInfo) => {
+  return async (dispatch) => {
+    try {
+      let res = await movieService.createCalendarMovie(calendarInfo);
+      message.success(res.data.message);
+    } catch (err) {
+      message.error(err.response.data.content);
+    }
+  };
+};

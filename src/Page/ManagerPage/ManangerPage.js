@@ -56,7 +56,7 @@ function ManangerPage() {
                 </Space>
                 <Button
                   onClick={() => {
-                    navigation("/manager/addfilm");
+                    navigation("/manager/addmovie");
                   }}
                   className="ml-2"
                   type="primary"

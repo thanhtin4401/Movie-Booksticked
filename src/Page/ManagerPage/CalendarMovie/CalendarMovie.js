@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
 
-import { Form, Button, Cascader, DatePicker, InputNumber } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Form, Button, Cascader, DatePicker, InputNumber, Select } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { movieService } from "../../../Services/movie.service";
+import moment from "moment";
+import { createCalendarMovie } from "../../../Redux/Actions/movieAction";
 const { RangePicker } = DatePicker;
 function CalendarMovie() {
   const navigation = useNavigate();
   const [form] = Form.useForm();
+  const { movieID } = useParams();
   const onFinish = (e) => {
-    console.log(e);
+    const Datapicked = moment(e.ngayChieuGioChieu).format(
+      "DD/MM/YYYY hh:mm:ss"
+    );
+    const createCalender = {
+      maPhim: movieID,
+      ...e,
+      ngayChieuGioChieu: Datapicked,
+    };
+    dispatch(createCalendarMovie(createCalender));
   };
 
   const [cascader, setCascader] = useState({
@@ -15,14 +28,32 @@ function CalendarMovie() {
     theatherCluster: [],
   });
 
-  useEffect(() => {}, []);
+  const dispatch = useDispatch();
+  useEffect(async () => {
+    try {
+      let res = await movieService.getTheaterInfo();
+      setCascader({
+        ...cascader,
+        theatherSystem: res.data.content,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-  const handleChangeTheaterSystem = (values) => {
-    console.log(values);
+  const handleChangeTheaterSystem = async (values) => {
+    try {
+      let res = await movieService.getClusterTheaterInfo(values);
+      setCascader({
+        ...cascader,
+        theatherCluster: res.data.content,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const onChangeDate = (values) => {
-    console.log(values);
-  };
+  const onOk = () => {};
+  const onChangeDate = (values) => {};
   const onChangeInput = (values) => {
     console.log(values);
   };
@@ -64,33 +95,34 @@ function CalendarMovie() {
           onFinish={onFinish}
           autoComplete="off"
         >
-          <Form.Item label="Rạp">
-            <Cascader
-              options={[
-                { label: "aa", value: "aa" },
-                { label: "aaa", value: "aaa" },
-              ]}
+          <Form.Item name="heThongRap" label="Rạp">
+            <Select
+              options={cascader.theatherSystem?.map((htr, index) => {
+                return { label: htr.tenHeThongRap, value: htr.tenHeThongRap };
+              })}
               onChange={handleChangeTheaterSystem}
               placeholder="Chọn hệ thống rạp"
             />
           </Form.Item>
-          <Form.Item label="Chọn cụm rạp">
-            <Cascader
-              options={[
-                { label: "aa", value: "aa" },
-                { label: "aaa", value: "aaa" },
-              ]}
+          <Form.Item label="cụm rạp" name="maRap">
+            <Select
+              options={cascader.theatherCluster?.map((htcr, index) => {
+                return { label: htcr.tenCumRap, value: htcr.maCumRap };
+              })}
               onChange={handleChangeTheaterSystem}
-              placeholder="Please select"
+              placeholder="Chọn cụm rạp"
             />
           </Form.Item>
-          <Form.Item label="Ngày chiếu:">
-            <DatePicker showTime onChange={onChangeDate} />
+          <Form.Item name="ngayChieuGioChieu" label="Ngày chiếu:">
+            <DatePicker
+              format="DD/MM/YYYY hh:mm:ss"
+              showTime
+              onChange={onChangeDate}
+              onOk={onOk}
+            />
           </Form.Item>
-          <Form.Item label="Ngày kết thúc:">
-            <DatePicker showTime onChange={onChangeDate} />
-          </Form.Item>
-          <Form.Item label="Giá bán:">
+
+          <Form.Item label="Giá vé:" name="giaVe">
             <InputNumber
               className="w-full"
               defaultValue={1000}

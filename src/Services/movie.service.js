@@ -17,6 +17,11 @@ export let movieService = {
   getTheaterInfo: () => {
     return https.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
   },
+  getClusterTheaterInfo: (theaterID) => {
+    return https.get(
+      `api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${theaterID}`
+    );
+  },
   getShowtimeInfoByTheater: () => {
     return https.get(
       `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`
@@ -42,5 +47,8 @@ export let movieService = {
   },
   bookTicket: (ticket) => {
     return https.post(`/api/QuanLyDatVe/DatVe`, ticket);
+  },
+  createCalendarMovie: (infoCalendar) => {
+    return https.post(`/api/QuanLyDatVe/TaoLichChieu`, infoCalendar);
   },
 };
