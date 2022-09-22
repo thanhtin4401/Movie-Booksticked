@@ -25,7 +25,6 @@ export default function DetailPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   return (
     <div className="bg-main h-full py-10 mb-12 container mx-auto">
       <TrailerModal
@@ -54,8 +53,10 @@ export default function DetailPage() {
             {moment(movie.ngayKhoiChieu).format("hh:mm:ss / DD-MM-YYYY ")}
           </h1>
           <div className="rating  my-3">
-            <h1 className="text-yellow-500 font-bold">Đánh Giá:</h1>
-            <Progress
+            <h1 className="text-yellow-500 font-bold flex">Đánh Giá: <span className="text-yellow-500 ml-2 font-bold text-sm flex items-center">
+                    {movie.danhGia} <AiFillStar />
+                  </span> </h1>
+            {/* <Progress
               strokeColor={{
                 "0%": " rgb(220 38 38)",
                 "100%": "rgb(234 179 8)",
@@ -68,7 +69,8 @@ export default function DetailPage() {
                   </span>
                 );
               }}
-            />
+            /> */}
+            
           </div>
 
           <p className="">{movie.moTa}</p>

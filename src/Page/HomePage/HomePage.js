@@ -11,7 +11,6 @@ export default function HomePage() {
         <ListMovie/>
         <CommingSoonMovie/>
         <TabMovie/>
-
     </div>
   )
 }
