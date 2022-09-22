@@ -21,3 +21,19 @@
     background-color: rgb(230, 0, 0) !important;
     border-radius: 50%;
 }
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: 550px !important;
+
+    > div {
+        height: 100%;
+        > div{
+            height: 100%;
+        }
+    }
+}

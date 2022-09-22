@@ -1,0 +1,11 @@
+.display {
+    // animation: animate 5s linear infinite;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+@keyframes animate {
+    10% {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    92% {}
+}

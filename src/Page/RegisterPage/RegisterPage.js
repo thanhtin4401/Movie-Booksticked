@@ -5,19 +5,16 @@ import LoginAnimate from "../LoginPage/LoginAnimate";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userService } from "../../Services/user.service";
 export default function RegisterPage() {
-  let history = useNavigate()
+  let history = useNavigate();
   const onFinish = (values) => {
-    console.log("sussess", values);
     userService
       .postRegister(values)
       .then((res) => {
-        console.log(res);
-        history("/login")
-        message.success("Đăng ký thành công!")
-    })
+        history("/login");
+        message.success("Đăng ký thành công!");
+      })
       .catch((err) => {
-        message.error(err?.response?.data.content)
-        console.log(err);
+        message.error(err?.response?.data.content);
       });
   };
 
@@ -101,7 +98,7 @@ export default function RegisterPage() {
             >
               <Input />
             </Form.Item>
-            
+
             <Form.Item
               label={<p className="text-white font-bold">Mã Nhóm</p>}
               name="maNhom"
@@ -133,10 +130,10 @@ export default function RegisterPage() {
                 Đăng Ký
               </button>
             </div>
-            <p className="text-white mt-5 flex items-center justify-end" >
+            <p className="text-white mt-5 flex items-center justify-end">
               Bạn đã có tài khoản?
               <NavLink to="/login" className="ml-2">
-                <div className="font-bold text-red-600"  href="">
+                <div className="font-bold text-red-600" href="">
                   Đăng nhập
                 </div>
               </NavLink>
