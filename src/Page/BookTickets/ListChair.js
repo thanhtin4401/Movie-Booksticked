@@ -35,11 +35,16 @@ export default function ListChair({ danhSachGhe }) {
             disabled={ghe.daDat}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDuocMinhDat}`}
           >
+<<<<<<< HEAD
             {ghe.daDat ? (
               <span className="font-bold">X</span>
             ) : (
               <span className="">{ghe.stt}</span>
             )}
+=======
+            {ghe.daDat ? <span className="font-bold">X</span> : <span className="">{ghe.stt}</span>}
+            
+>>>>>>> develop
           </button>
 
           {(index + 1) % 16 === 0 ? <br /> : ""}

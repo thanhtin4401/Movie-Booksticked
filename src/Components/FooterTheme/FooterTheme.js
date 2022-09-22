@@ -24,7 +24,7 @@ export default function FooterTheme() {
   };
   return (
     <div style={{ backgroundColor: "#151515" }}>
-      <ScrollToTop smooth top={200} height={20} width={40} />
+      <ScrollToTop smooth top={200} height={20} width={40} className="animate-bounce" />
       <div
         style={{ borderBottom: "1px solid #666" }}
         className="grid mb:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 container mx-auto px-10 py-10 "

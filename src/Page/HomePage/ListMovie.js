@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
 
+
 export default function ListMovie() {
   let dispatch = useDispatch();
   let { movieList } = useSelector((state) => {
@@ -17,7 +18,6 @@ export default function ListMovie() {
     dispatch(getMovieListActionService());
   }, []);
   const renderListMovie = () => {
-    console.log(movieList)
     return movieList
       .filter((item) =>
         item.tenPhim.toLowerCase().includes(search.toLowerCase())
