@@ -36,6 +36,7 @@ export default function ListChair({ danhSachGhe }) {
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDD} ${classGheDuocMinhDat}`}
           >
             {ghe.daDat ? <span className="font-bold">X</span> : <span className="">{ghe.stt}</span>}
+            
           </button>
 
           {(index + 1) % 16 === 0 ? <br /> : ""}

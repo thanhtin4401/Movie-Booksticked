@@ -27,7 +27,7 @@ export default function BookTicketsPage() {
     }, 2000);
   }
   return (
-    <div className="container mx-auto px-10 my-10">
+    <div className="container mx-auto px-10 pt-24">
       <h1 className="text-center font-bold text-white text-3xl uppercase">
         Thông Tin Chi Tiết
       </h1>

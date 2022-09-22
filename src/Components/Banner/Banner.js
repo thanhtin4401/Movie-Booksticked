@@ -27,12 +27,11 @@ export default function Banner() {
     row: 0
   };
   const renderContent = () => { 
-    
        return banner.map((item,index) => {
         return  <div key={index} className=""><img className=" object-cover"style={{width:"100vw",height:"100%"}}  src={item.hinhAnh} key={index} alt="" /></div>
           })
     }
-  return <div>
+  return <div >
     <Slider {...settings} className="text-white bg-white relative">
       {renderContent()}
     </Slider>
