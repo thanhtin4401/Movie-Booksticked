@@ -15,6 +15,7 @@ import AddUser from "./Page/ManagerPage/AddUser/AddUser";
 import AddMovie from "./Page/ManagerPage/AddMovie/AddMovie";
 import EditUser from "./Page/ManagerPage/EditUser/EditUser";
 import EditMovie from "./Page/ManagerPage/EditMovie/EditMovie";
+import CalendarMovie from "./Page/ManagerPage/CalendarMovie/CalendarMovie";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             element={<Layout Component={AddMovie} />}
           />
           <Route
-            path="/manager/edituser/:useID"
+            path="/manager/edituser/:userID"
             element={<Layout Component={EditUser} />}
           />
           <Route
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/booktickets/:id"
             element={<Layout Component={BookTicketsPage} />}
+          />
+          <Route
+            path="/manager/calendarmovie/:movieID"
+            element={<Layout Component={CalendarMovie} />}
           />
 
           <Route path="/*" element={<NotFoundPage />} />

@@ -5,42 +5,41 @@ import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getInforMovieActionService } from "../../../Redux/Actions/movieAction";
+import {
+  getInforMovieActionService,
+  updateMovieActionService,
+} from "../../../Redux/Actions/movieAction";
 
-import { useForm } from "antd/lib/form/Form";
 const { TextArea } = Input;
 
 function EditFilm() {
   const dispatch = useDispatch();
   const formatNumber = (value) => new Intl.NumberFormat().format(value);
-  const [defaultValue, setDefaultValue] = useState({});
   const { movieInfor } = useSelector((state) => state.movieReducer);
   const [form] = Form.useForm();
   const dateFormat = "DD-MM-YYYY";
   const { movieID } = useParams();
   useEffect(() => {
     dispatch(getInforMovieActionService(movieID));
-    setDefaultValue({
-      maPhim: movieID,
-      tenPhim: movieInfor?.tenPhim,
-      biDanh: movieInfor?.biDanh,
-      trailer: movieInfor?.trailer,
-      maNhom: movieInfor?.maNhom,
-      danhGia: movieInfor?.danhGia,
-      ngayKhoiChieu: moment(movieInfor?.ngayKhoiChieu),
-      moTa: movieInfor?.moTa,
-      hinhAnh: null,
-      sapChieu: movieInfor?.sapChieu,
-      hot: movieInfor?.hot,
-      dangChieu: movieInfor?.dangChieu,
-    });
   }, [movieID]);
   useEffect(() => {
-    form.setFieldsValue(defaultValue);
-  }, [form, defaultValue]);
+    movieInfor &&
+      form.setFieldsValue({
+        maPhim: movieID,
+        tenPhim: movieInfor?.tenPhim,
+        biDanh: movieInfor?.biDanh,
+        trailer: movieInfor?.trailer,
+        maNhom: movieInfor?.maNhom,
+        danhGia: movieInfor?.danhGia,
+        ngayKhoiChieu: moment(movieInfor?.ngayKhoiChieu),
+        moTa: movieInfor?.moTa,
+        hinhAnh: null,
+        sapChieu: movieInfor?.sapChieu,
+        hot: movieInfor?.hot,
+        dangChieu: movieInfor?.dangChieu,
+      });
+  }, [form, movieInfor]);
 
-  // console.log(movieInfor);
-  console.log("defaulte", defaultValue);
   const NumericInput = (props) => {
     const { value, onChange } = props;
 
@@ -91,9 +90,9 @@ function EditFilm() {
   const [imgSRC, setimgSRC] = useState("");
   const [file, setfile] = useState({});
   const onFinish = (e) => {
-    let ngayChieu = moment(e.ngayChieu).format("dd / mm / yyyy");
+    // let ngayChieu = moment(e.ngayChieu).format("dd / mm / yyyy");
     const infor = { ...e, hinhAnh: file };
-    console.log(e.maPhim);
+
     const formData = new FormData();
     for (let key in infor) {
       if (key !== "hinhAnh") {
@@ -104,8 +103,8 @@ function EditFilm() {
         }
       }
     }
-    console.log(formData);
-    // dispatch(updateMovieActionService(formData));
+
+    dispatch(updateMovieActionService(formData));
   };
   const handleChangeFile = async (e) => {
     let file = e.target.files[0];
@@ -152,6 +151,7 @@ function EditFilm() {
         </div>
 
         <Form
+          form={form}
           id="myForm"
           labelCol={{
             span: 4,
@@ -162,7 +162,6 @@ function EditFilm() {
           layout="horizontal"
           onFinish={onFinish}
           autoComplete="off"
-          initialValues={defaultValue}
         >
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập tên phim" }]}

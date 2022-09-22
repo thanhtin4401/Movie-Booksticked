@@ -27,7 +27,7 @@ export default function DetailPage() {
   }, []);
 
   return (
-    <div className="bg-main h-full pb-10 mb-12 container mx-auto">
+    <div className="bg-main h-screen pb-10 container mx-auto">
       <TrailerModal
         open={openTraiLer}
         close={() => {
@@ -42,7 +42,7 @@ export default function DetailPage() {
           setOpenTicket(false);
         }}
       />
-      <h1 className="text-white font-bold text-2xl m-10 ">Chi Tiết Phim</h1>
+
       <div className="detail-content mb:block sm:block lg:flex gap-10 mx-10">
         <img src={movie.hinhAnh} alt="" className="detail-img rounded-xl" />
         <div className="title p-5 mb:w-full lg:w-1/2">
