@@ -47,7 +47,7 @@ export default function DetailPage() {
         <img src={movie.hinhAnh} alt="" className="detail-img rounded-xl" />
         <div className="title p-5 mb:w-full lg:w-1/2">
           <h1 className="text-white font-bold text-xl uppercase">
-            <span className="text-yellow-500">Tên Phim:</span> {movie.tenPhim}
+            <span className="text-yellow-500">Tên Phim: </span> {movie.tenPhim}
           </h1>
           <h1 className="text-white my-3 font-bold">
             <span className="text-yellow-500">Ngày Chiếu:</span>{" "}

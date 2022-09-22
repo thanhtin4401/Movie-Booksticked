@@ -146,7 +146,7 @@ function EditFilm() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            EDIT FILM
+            EDIT MOVIE
           </h1>
         </div>
 
