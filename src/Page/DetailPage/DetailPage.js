@@ -26,7 +26,7 @@ export default function DetailPage() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="bg-main h-screen pb-10 container mx-auto">
+    <div className="bg-main h-screen pt-32 pb-10  container mx-auto">
       <TrailerModal
         open={openTraiLer}
         close={() => {
