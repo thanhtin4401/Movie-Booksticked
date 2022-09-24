@@ -23,7 +23,7 @@ export default function FooterTheme() {
     });
   };
   return (
-    <div style={{ backgroundColor: "#151515" }}>
+    <div className="footer" style={{ backgroundColor: "#151515" }}>
       <ScrollToTop
         smooth
         top={200}
