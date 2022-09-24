@@ -5,7 +5,6 @@ import {AiFillStar,AiOutlinePlayCircle,AiOutlineSearch} from "react-icons/ai"
 export default function MoveiItem({movie}) {
   return (
         <div className="movie-item" >
-          <AiOutlinePlayCircle className="movie-play hover:text-white text-white bg-gradient-to-t from-black to-transparent"/>
           <img
               alt="example"
               src={movie.hinhAnh}
