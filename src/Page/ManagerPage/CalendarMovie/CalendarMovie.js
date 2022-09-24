@@ -29,16 +29,19 @@ function CalendarMovie() {
   });
 
   const dispatch = useDispatch();
-  useEffect(async () => {
-    try {
-      let res = await movieService.getTheaterInfo();
-      setCascader({
-        ...cascader,
-        theatherSystem: res.data.content,
-      });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        let res = await movieService.getTheaterInfo();
+        setCascader({
+          ...cascader,
+          theatherSystem: res.data.content,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
+    fetchData();
   }, []);
 
   const handleChangeTheaterSystem = async (values) => {
@@ -58,7 +61,7 @@ function CalendarMovie() {
     console.log(values);
   };
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white h-screen pt-[4rem] flex justify-center items-center">
       <div className="container mx-auto px-[40px] pb-10 pt-4">
         <div className="flex items-center justify-center">
           <svg
@@ -78,7 +81,7 @@ function CalendarMovie() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            Create Calendar Movie
+            Tạo lịch chiếu phim
           </h1>
         </div>
 
@@ -125,7 +128,6 @@ function CalendarMovie() {
           <Form.Item label="Giá vé:" name="giaVe">
             <InputNumber
               className="w-full"
-              defaultValue={1000}
               formatter={(value) =>
                 `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               }

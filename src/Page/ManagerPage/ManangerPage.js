@@ -26,7 +26,7 @@ function ManangerPage() {
               <div className="function mb-2 flex items-center">
                 <Space direction="vertical">
                   <Search
-                    placeholder="input user name"
+                    placeholder="Tìm tài khoản"
                     onSearch={onSearchUser}
                     enterButton
                   />
@@ -39,7 +39,7 @@ function ManangerPage() {
                     navigation("/manager/adduser");
                   }}
                 >
-                  + add user
+                  + Thêm tài khoản
                 </Button>
               </div>
 
@@ -49,7 +49,7 @@ function ManangerPage() {
               <div className="function mb-2 flex items-center">
                 <Space direction="vertical">
                   <Search
-                    placeholder="input user name"
+                    placeholder="Tìm phim"
                     onSearch={onSearchMovie}
                     enterButton
                   />
@@ -61,7 +61,7 @@ function ManangerPage() {
                   className="ml-2"
                   type="primary"
                 >
-                  + add film
+                  + Thêm phim
                 </Button>
               </div>
 

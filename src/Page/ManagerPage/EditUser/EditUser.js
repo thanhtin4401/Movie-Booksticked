@@ -38,7 +38,7 @@ function EditUser() {
   }, [form, userInfor]);
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white h-screen pt-[4rem] flex justify-center items-center">
       <div className="container mx-auto px-[40px] pb-10 pt-4">
         <div className="flex items-center justify-center">
           <svg

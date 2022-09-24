@@ -3,8 +3,6 @@ import ReactDOM from "react-dom/client";
 import "antd/dist/antd.css";
 import "./index.css";
 import App from "./App";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";

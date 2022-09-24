@@ -1,9 +1,10 @@
+import { maNhom } from "../utils/utils";
 import { https } from "./configURL";
 
 export let movieService = {
   getMovieList: (movieName) => {
     return https.get(
-      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02${
+      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}${
         movieName ? `&tenPhim=${movieName}` : ""
       }`
     );
@@ -24,7 +25,7 @@ export let movieService = {
   },
   getShowtimeInfoByTheater: () => {
     return https.get(
-      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`
+      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`
     );
   },
   addMovie: (dataMovie) => {

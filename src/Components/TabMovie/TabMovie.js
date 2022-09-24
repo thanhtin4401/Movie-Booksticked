@@ -71,7 +71,7 @@ export default function TabMovie() {
     );
   };
   return (
-    <div className="container lg:mx-20 lg:p-10 mb:w-full overflow-scroll lg:w-10/12">
+    <div className="container lg:mx-20 lg:p-10 mb:w-full  lg:w-10/12">
       {/* {isLoading ? <SpinnerComponent/> : ""}   */}
       <Tabs
         className="mb:w-[60rem]"

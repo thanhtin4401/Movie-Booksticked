@@ -12,17 +12,22 @@ export const columns = [
     title: "Tên phim",
     dataIndex: "tenPhim",
     key: "tenPhim",
+    // width: "20%",
+    width: 100,
   },
   {
     title: "Bí danh",
     dataIndex: "biDanh",
     key: "biDanh",
+    width: "10%",
   },
-  {
-    title: "Trailer",
-    dataIndex: "trailer",
-    key: "trailer",
-  },
+  // {
+  //   title: "Trailer",
+  //   dataIndex: "trailer",
+  //   key: "trailer",
+
+  //   width: 100,
+  // },
   {
     title: "Ngày chiếu",
     dataIndex: "ngayKhoiChieu",
@@ -73,6 +78,7 @@ export const columns = [
     title: "Mô tả",
     dataIndex: "moTa",
     key: "moTa",
+    width: 400,
   },
   {
     title: "Thao tác",

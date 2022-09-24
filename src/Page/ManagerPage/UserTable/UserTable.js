@@ -33,7 +33,7 @@ function UserTable({ search }) {
     fetchListUser(search);
   }, [search]);
 
-  return <Table columns={columns} dataSource={dataUser} />;
+  return <Table columns={columns} dataSource={dataUser} scroll={{ x: 1300 }} />;
 }
 
 export default UserTable;
