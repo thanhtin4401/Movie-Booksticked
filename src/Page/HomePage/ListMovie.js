@@ -6,6 +6,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
+// Import Swiper React components
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 
 export default function ListMovie() {
@@ -25,9 +33,11 @@ export default function ListMovie() {
       .filter((item) => item.hinhAnh !== null)
       .map((item, index) => {
         return (
-          <NavLink to={`detail/${item.maPhim}`} key={index}>
+          <SwiperSlide>
+            <NavLink to={`detail/${item.maPhim}`} key={index}>
             <MoveiItem movie={item} />
           </NavLink>
+          </SwiperSlide>
         );
       });
   };
@@ -44,8 +54,47 @@ export default function ListMovie() {
           <AiOutlineSearch className="font-bold text-2xl" />
         </button>
       </div>
-      <div className="grid mb:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb:mx-10 md:mx-10 lg:mx-20">
+      {/* <div className="grid mb:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb:mx-10 md:mx-10 lg:mx-20">
+     
         {renderListMovie()}
+      </div> */}
+      <div className="lg:px-20 sm:px-0 mb:px-0">
+      <h1 className="text-red-600 text-2xl font-bold pb-5">TẤT CẢ</h1>
+      <Swiper
+      className="container mx-20 overflow-hidden"
+       modules={[Autoplay,Navigation, Pagination, Scrollbar, A11y]}
+       spaceBetween={20}
+       slidesPerView={5}
+       navigation={true}
+       loop={true}
+       autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      breakpoints={{
+        300: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 20,
+        },
+      }}
+       scrollbar={{ draggable: true }}
+       onSwiper={(swiper) => console.log(swiper)}
+       onSlideChange={() => console.log('slide change')}
+    >
+      {renderListMovie()}
+    </Swiper>
       </div>
     </div>
   );

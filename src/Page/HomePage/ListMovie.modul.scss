@@ -47,3 +47,11 @@
         padding: 15px;
     }
 }
+.swiper-button-next, .swiper-button-prev{
+    background-color: rgba(0, 0, 0,0.7);
+    padding: 30px 20px;
+    border-radius: 7px;
+}
+.swiper-button-next::after, .swiper-button-prev::after{
+    color: #fff;
+}
