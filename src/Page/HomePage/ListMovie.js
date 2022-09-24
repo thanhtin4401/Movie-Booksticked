@@ -7,14 +7,13 @@ import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
 // Import Swiper React components
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 
 export default function ListMovie() {
   let dispatch = useDispatch();
@@ -35,8 +34,8 @@ export default function ListMovie() {
         return (
           <SwiperSlide>
             <NavLink to={`detail/${item.maPhim}`} key={index}>
-            <MoveiItem movie={item} />
-          </NavLink>
+              <MoveiItem movie={item} />
+            </NavLink>
           </SwiperSlide>
         );
       });
@@ -58,43 +57,43 @@ export default function ListMovie() {
      
         {renderListMovie()}
       </div> */}
-      <div className="lg:px-20 sm:px-0 mb:px-0">
-      <h1 className="text-red-600 text-2xl font-bold pb-5">TẤT CẢ</h1>
-      <Swiper
-      className="container mx-20 overflow-hidden"
-       modules={[Autoplay,Navigation, Pagination, Scrollbar, A11y]}
-       spaceBetween={20}
-       slidesPerView={5}
-       navigation={true}
-       loop={true}
-       autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      breakpoints={{
-        300: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 20,
-        },
-      }}
-       scrollbar={{ draggable: true }}
-       onSwiper={(swiper) => console.log(swiper)}
-       onSlideChange={() => console.log('slide change')}
-    >
-      {renderListMovie()}
-    </Swiper>
+      <div className="lg:px-20 sm:px-8 mb:px-8">
+        <h1 className="text-red-600 text-2xl font-bold pb-5">TẤT CẢ</h1>
+        <Swiper
+          className="container mx-20 overflow-hidden"
+          modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={20}
+          slidesPerView={5}
+          navigation={true}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
+          }}
+          scrollbar={{ draggable: true }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+        >
+          {renderListMovie()}
+        </Swiper>
       </div>
     </div>
   );

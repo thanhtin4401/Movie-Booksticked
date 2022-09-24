@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import MoveiItem from "../../Components/MoveiItem/MoveiItem";
 import { useState } from "react";
 import moment from "moment";
-import { Navigation, Pagination, Scrollbar, A11y ,Autoplay} from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -98,7 +98,7 @@ export default function CommingSoonMovie() {
 
   return (
     <div className="container mx-auto my-7 py-10">
-      <div className="lg:px-20 sm:px-0 mb:px-0">
+      <div className="lg:px-20 sm:px-8 mb:px-8">
         <h1 className="text-red-600 text-2xl font-bold">SẮP KHỞI CHIẾU</h1>
         <div
           className="commingSoon grid grid-cols-12 my-5 bg-blend-multiply"
@@ -112,36 +112,36 @@ export default function CommingSoonMovie() {
         </div>
         <Swiper
           className="container mx-20 overflow-hidden"
-          modules={[Autoplay,Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={20}
           slidesPerView={5}
           navigation={true}
           loop={true}
           autoplay={{
-           delay: 1500,
-           disableOnInteraction: false,
-         }}
-         breakpoints={{
-          300: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          640: {
-             slidesPerView: 2,
-             spaceBetween: 20,
-           },
-           768: {
-             slidesPerView: 3,
-             spaceBetween: 20,
-           },
-           1024: {
-             slidesPerView: 5,
-             spaceBetween: 20,
-           },
-         }}
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
+          }}
           scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
+          onSlideChange={() => console.log("slide change")}
         >
           {renderListMovie()}
         </Swiper>
