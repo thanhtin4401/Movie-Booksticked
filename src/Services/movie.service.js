@@ -1,9 +1,10 @@
+import { maNhom } from "../utils/utils";
 import { https } from "./configURL";
 
 export let movieService = {
   getMovieList: (movieName) => {
     return https.get(
-      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02${
+      `/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}${
         movieName ? `&tenPhim=${movieName}` : ""
       }`
     );
@@ -17,9 +18,14 @@ export let movieService = {
   getTheaterInfo: () => {
     return https.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
   },
+  getClusterTheaterInfo: (theaterID) => {
+    return https.get(
+      `api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${theaterID}`
+    );
+  },
   getShowtimeInfoByTheater: () => {
     return https.get(
-      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP06`
+      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`
     );
   },
   addMovie: (dataMovie) => {
@@ -42,5 +48,8 @@ export let movieService = {
   },
   bookTicket: (ticket) => {
     return https.post(`/api/QuanLyDatVe/DatVe`, ticket);
+  },
+  createCalendarMovie: (infoCalendar) => {
+    return https.post(`/api/QuanLyDatVe/TaoLichChieu`, infoCalendar);
   },
 };
