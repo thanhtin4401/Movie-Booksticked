@@ -1,9 +1,10 @@
+import { maNhom } from "../utils/utils";
 import { https } from "./configURL";
 
 export let managerService = {
   getUserList: (account) => {
     return https.get(
-      `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00${
+      `api/QuanLyNguoiDung/LayDanhSachNguoiDung?maNhom=${maNhom}${
         account ? `&tuKhoa=${account}` : ""
       }`
     );

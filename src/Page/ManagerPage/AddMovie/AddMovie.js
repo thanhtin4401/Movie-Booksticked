@@ -93,7 +93,7 @@ function AddMovie() {
 
   const navigation = useNavigate();
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white h-screen pt-[4rem] flex justify-center items-center">
       <div className="container mx-auto px-[40px] pb-10 pt-4">
         <div className="flex items-center justify-center">
           <svg
@@ -113,7 +113,7 @@ function AddMovie() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            ADD FILM
+            Thêm phim mới
           </h1>
         </div>
 
@@ -139,28 +139,32 @@ function AddMovie() {
             name="tenPhim"
             label="Tên film"
           >
-            <Input name="tenPhim" onChange={(e) => e.target.value} />
+            <Input
+              name="tenPhim"
+              onChange={(e) => e.target.value}
+              placeholder="Nhập tên phim"
+            />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập bí danh" }]}
             name="biDanh"
             label="Bí danh"
           >
-            <Input />
+            <Input placeholder="Nhập bí danh" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập trailer" }]}
             name="trailer"
             label="Trailer"
           >
-            <Input />
+            <Input placeholder="Nhập link trailer " />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mã nhóm" }]}
             name="maNhom"
             label="Mã nhóm"
           >
-            <Input />
+            <Input placeholder="Nhập mã nhóm" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập đánh gía" }]}
@@ -172,6 +176,7 @@ function AddMovie() {
               style={{
                 width: 120,
               }}
+              placeholder="Nhập đánh giá"
             />
           </Form.Item>
           <Form.Item
@@ -196,7 +201,7 @@ function AddMovie() {
             name="moTa"
             label="Mô tả"
           >
-            <TextArea rows={4} />
+            <TextArea rows={4} placeholder="Nhập mô tả" />
           </Form.Item>
 
           <Form.Item

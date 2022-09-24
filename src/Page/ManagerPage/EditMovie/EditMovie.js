@@ -126,7 +126,7 @@ function EditFilm() {
 
   const navigation = useNavigate();
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white pt-[4rem] flex justify-center items-center">
       <div className="container mx-auto px-[40px] pb-10 pt-4">
         <div className="flex items-center justify-center">
           <svg
@@ -146,7 +146,7 @@ function EditFilm() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            EDIT MOVIE
+            Sửa thông tin phim
           </h1>
         </div>
 

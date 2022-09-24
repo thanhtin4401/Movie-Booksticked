@@ -24,7 +24,7 @@ function AddUser() {
   };
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white h-screen pt-[4rem] flex justify-center items-center">
       <div className="container mx-auto px-[40px] pb-10 pt-4">
         <div className="flex items-center justify-center">
           <svg
@@ -43,7 +43,7 @@ function AddUser() {
           </svg>
 
           <h1 className="text-black text-center font-black text-[5rem]">
-            Add user
+            Thêm tài khoản
           </h1>
         </div>
 
@@ -64,35 +64,35 @@ function AddUser() {
             name="taiKhoan"
             label="Tài khoản"
           >
-            <Input />
+            <Input placeholder="Nhập tài khoản" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
             name="matKhau"
             label="Mật khẩu"
           >
-            <Input.Password className="password" />
+            <Input.Password className="password" placeholder="Nhập mật khẩu" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập họ tên" }]}
             name="hoTen"
             label="Họ tên"
           >
-            <Input />
+            <Input placeholder="Nhập họ tên" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập email" }]}
             name="email"
             label="Email"
           >
-            <Input />
+            <Input placeholder="Nhập email" />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập số điện thoại" }]}
             name="soDT"
             label="SĐT"
           >
-            <Input />
+            <Input placeholder="Nhập số điện thoại" />
           </Form.Item>
 
           <Form.Item
@@ -115,7 +115,6 @@ function AddUser() {
                 navigation("/manager");
               }}
               className="border ml-2 back-btn bg-white"
-              htmlType="submit"
             >
               Trở về
             </Button>
