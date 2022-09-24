@@ -16,6 +16,7 @@ import AddMovie from "./Page/ManagerPage/AddMovie/AddMovie";
 import EditUser from "./Page/ManagerPage/EditUser/EditUser";
 import EditMovie from "./Page/ManagerPage/EditMovie/EditMovie";
 import CalendarMovie from "./Page/ManagerPage/CalendarMovie/CalendarMovie";
+import LayoutAdmin from "./HOC/LayoutAdmin";
 
 function App() {
   return (
@@ -32,31 +33,31 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/manager"
-            element={<Layout Component={ManangerPage} />}
+            element={<LayoutAdmin Component={ManangerPage} />}
           />
           <Route
             path="/manager/adduser"
-            element={<Layout Component={AddUser} />}
+            element={<LayoutAdmin Component={AddUser} />}
           />
           <Route
             path="/manager/addmovie"
-            element={<Layout Component={AddMovie} />}
+            element={<LayoutAdmin Component={AddMovie} />}
           />
           <Route
             path="/manager/edituser/:userID"
-            element={<Layout Component={EditUser} />}
+            element={<LayoutAdmin Component={EditUser} />}
           />
           <Route
             path="/manager/editmovie/:movieID"
-            element={<Layout Component={EditMovie} />}
+            element={<LayoutAdmin Component={EditMovie} />}
           />
           <Route
             path="/booktickets/:id"
-            element={<Layout Component={BookTicketsPage} />}
+            element={<LayoutAdmin Component={BookTicketsPage} />}
           />
           <Route
             path="/manager/calendarmovie/:movieID"
-            element={<Layout Component={CalendarMovie} />}
+            element={<LayoutAdmin Component={CalendarMovie} />}
           />
 
           <Route path="/*" element={<NotFoundPage />} />

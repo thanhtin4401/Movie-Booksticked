@@ -27,18 +27,42 @@ export default function BookTicketsPage() {
     }, 2000);
   }
   return (
-    <div className="container mx-auto px-10 my-10">
-      <h1 className="text-center font-bold text-white text-3xl uppercase">
-        Thông Tin Chi Tiết
-      </h1>
-      <div className="grid grid-cols-12 my-5">
-        <div className="mb:overflow-scroll mb:col-span-12 sm:col-span-12 lg:col-span-7 p-5 ">
-          <div className="mb:w-[40rem] w-full h-2 bg-white rounded"></div>
-          <div className="mb:w-[40rem] display relative w-full h-8 bg-white mb-12"></div>
-          <ListChair danhSachGhe={danhSachGhe} />
-        </div>
-        <div className="mb:col-span-12 sm:col-span-12 lg:col-span-5 lg:p-5">
-          <BookTicketDetail thongTinPhim={thongTinPhim} />
+    <div className="page">
+      <div className="container mx-auto px-10 py-[10rem]">
+        <h1 className="text-center font-bold text-white text-3xl uppercase">
+          Thông Tin Chi Tiết
+        </h1>
+        <div className="grid grid-cols-12 my-5">
+          <div className="mb:overflow-scroll book-chair mb:col-span-12 sm:col-span-12 lg:col-span-7 p-5 ">
+            <div className="mb:w-[40rem] w-full h-2 bg-white rounded"></div>
+            <div className="mb:w-[40rem] display relative w-full h-8 bg-white mb-12"></div>
+            <div className="mb:w-[40rem] flex justify-center">
+              <ListChair danhSachGhe={danhSachGhe} />
+            </div>
+
+            <div className="mb:w-[40rem] mt-5 flex w-full justify-center flex-wrap">
+              <h1 className="text-white flex items-center font-bold">
+                <button className="ghe "></button> : Ghế Chưa Đặt{" "}
+              </h1>
+              <h1 className="text-white flex items-center font-bold">
+                <button className="ghe gheDaDat"></button> : Ghế đã đặt{" "}
+              </h1>
+              <h1 className="text-white flex items-center font-bold">
+                <button className="ghe gheDangDat"></button> : Ghế đang được
+                chọn{" "}
+              </h1>
+              <h1 className="text-white flex items-center font-bold">
+                <button className="ghe gheDuocMinhDat"></button> : Ghế bạn đã
+                đặt{" "}
+              </h1>
+              <h1 className="text-white flex items-center font-bold">
+                <button className="ghe gheVip"></button> : Ghế Vip{" "}
+              </h1>
+            </div>
+          </div>
+          <div className="mb:col-span-12  sm:col-span-12 lg:col-span-5 lg:p-5">
+            <BookTicketDetail thongTinPhim={thongTinPhim} />
+          </div>
         </div>
       </div>
     </div>

@@ -45,6 +45,8 @@ function MovieTable({ search }) {
       }}
       columns={columns}
       dataSource={dataUser}
+      // scroll={{ x: "max-content" }}
+      scroll={{ x: 1300 }}
     />
   );
 }
