@@ -140,8 +140,6 @@ export default function CommingSoonMovie() {
             },
           }}
           scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
         >
           {renderListMovie()}
         </Swiper>
