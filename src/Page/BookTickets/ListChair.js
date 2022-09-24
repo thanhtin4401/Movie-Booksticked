@@ -50,7 +50,7 @@ export default function ListChair({ danhSachGhe }) {
   return (
     <div className="mb:w-[40rem]">
       {renderChair()}
-      <div className="grid grid-cols-2 mt-5 ">
+      {/* <div className="grid grid-cols-2 mt-5 ">
         <h1 className="text-white flex items-center font-bold">
           <button className="ghe "></button> : Ghế Chưa Đặt{" "}
         </h1>
@@ -66,7 +66,7 @@ export default function ListChair({ danhSachGhe }) {
         <h1 className="text-white flex items-center font-bold">
           <button className="ghe gheVip"></button> : Ghế Vip{" "}
         </h1>
-      </div>
+      </div> */}
     </div>
   );
 }
