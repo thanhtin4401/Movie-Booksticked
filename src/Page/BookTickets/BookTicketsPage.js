@@ -29,13 +29,15 @@ export default function BookTicketsPage() {
   return (
     <div className="page">
       <div className="container mx-auto px-10 py-[10rem]">
-        <h1 className="text-center font-bold text-white text-3xl uppercase">
+        <h1 className="text-center font-bold text-white text-[40px] uppercase">
           Thông Tin Chi Tiết
         </h1>
         <div className="grid grid-cols-12 my-5">
-          <div className="mb:overflow-scroll book-chair mb:col-span-12 sm:col-span-12 lg:col-span-7 p-5 ">
-            <div className="mb:w-[40rem] w-full h-2 bg-white rounded"></div>
-            <div className="mb:w-[40rem] display relative w-full h-8 bg-white mb-12"></div>
+          <div className="mb:overflow-scroll book-chair perpet mb:col-span-12 sm:col-span-12 lg:col-span-7 p-5 ">
+            <div className="mb:w-[40rem] relative mb-10 w-full text-black text-2xl display h-[4rem] rounded flex justify-center items-center">
+              Màn Hình Chiếu
+            </div>
+            {/* <div className="mb:w-[40rem] mb-8 trapezium relative w-full h-8mb-12"></div> */}
             <div className="mb:w-[40rem] flex justify-center">
               <ListChair danhSachGhe={danhSachGhe} />
             </div>
