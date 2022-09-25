@@ -9,26 +9,25 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "../../Redux/Actions/userAction";
 export default function LoginPage() {
   let history = useNavigate();
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
   const onFinish = (values) => {
     userService
       .postLogin(values)
       .then((res) => {
-        message.success("Đăng Nhập Thành Công!!!")
+        message.success("Đăng Nhập Thành Công!!!");
         //dispatch Action Redux
-        dispatch(loginAction(res.data.content))
-        localStorageService.user.set(res.data.content)
-        
+        dispatch(loginAction(res.data.content));
+        localStorageService.user.set(res.data.content);
+
         // Chuyển trang load lại trang
         // window.location.href = "/"
 
-       setTimeout(() => {
-        history("/")
-       }, 1000);
-
+        setTimeout(() => {
+          history("/");
+        }, 1000);
       })
       .catch((err) => {
-        message.error(err?.response?.data.content)
+        message.error(err?.response?.data.content);
       });
   };
 
@@ -36,12 +35,12 @@ export default function LoginPage() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div className="h-screen p-10  page w-screen  ">
-      <div className="content container mx-auto mt-10 p-10 rounded-xl ">
-        <div className="animate">
+    <div className="h-screen mb:p-0 sm:p-0 md:p-10 flex justify-center items-center  page w-screen  ">
+      <div className="bg-black flex items-center container mx-auto mb:p-0 sm:p-0 md:p-10 rounded-xl ">
+        <div className="animate mb:hidden sm:hidden md:block">
           <LoginAnimate />
         </div>
-        <div className="form p-5 ">
+        <div className="p-5 mb:w-full sm:w-full md:w-2/4 ">
           <h1 className="text-center text-3xl my-5 font-bold text-red-600">
             Đăng Nhập
           </h1>
@@ -92,11 +91,13 @@ export default function LoginPage() {
                 Đăng Nhập
               </button>
             </div>
-            <p className="text-right text-white mt-7">
+            <p className="text-center text-white mt-7">
               Bạn chưa có tài khoản?{" "}
-              <NavLink to="/register"><a className="font-bold text-red-600" href="">
-                Đăng kí
-              </a></NavLink>
+              <NavLink to="/register">
+                <a className="font-bold text-red-600" href="">
+                  Đăng kí
+                </a>
+              </NavLink>
             </p>
           </Form>
         </div>

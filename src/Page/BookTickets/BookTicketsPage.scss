@@ -1,13 +1,11 @@
 .display {
     // animation: animate 5s linear infinite;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-@keyframes animate {
-    10% {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    }
-    92% {}
+    // background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: white;
+    height: 10rem;
+    color: rgba(0, 0, 0, 0.295);
+    margin-bottom: 2rem;
+    box-shadow: rgba(255, 255, 255, 0.8) 0px 5px 15px;
 }
 
 .page {
@@ -25,4 +23,13 @@
 
 .book-chair::-webkit-scrollbar {
     display: none;
+}
+
+.trapezium {
+    border-top: 100px solid white;
+    ;
+    // box-shadow: 0 1 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 100px;
 }

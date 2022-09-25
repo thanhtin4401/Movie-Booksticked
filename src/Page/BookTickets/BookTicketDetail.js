@@ -40,12 +40,6 @@ export default function BookTicketDetail({ thongTinPhim }) {
         </h1>
         <div className="ticket-detail ">
           <div className="space-y-5 ">
-            <h1 className="text-white mt-0 py-4 border-b border-y-white  font-bold flex justify-between text-base">
-              Tên Phim:{" "}
-              <span className="text-[#e67d23] font-[500] ml-1  text-lg">
-                {thongTinPhim?.tenPhim}
-              </span>
-            </h1>
             <h1 className="text-white mt-0 py-4 border-b border-y-white  flex justify-between font-bold text-base">
               Cụm Rạp:{" "}
               <span className="text-white font-[500] ml-1 text-lg">
@@ -74,13 +68,15 @@ export default function BookTicketDetail({ thongTinPhim }) {
 
             <h1 className="text-white mt-0 py-4 border-b border-y-white  flex min-h-[8rem] justify-between font-bold text-base break-words">
               Chọn ghế:{" "}
-              {danhSachGheDangDat.map((item, index) => {
-                return (
-                  <span key={index} className="text-[#e67d23]  ml-1 text-lg">
-                    {item.tenGhe},
-                  </span>
-                );
-              })}
+              <div className="flex flex-wrap">
+                {danhSachGheDangDat.map((item, index) => {
+                  return (
+                    <span key={index} className="text-[#e67d23]  ml-1 text-lg">
+                      {item.tenGhe},
+                    </span>
+                  );
+                })}
+              </div>
             </h1>
             <h1 className="text-white mt-0 py-4 border-b border-y-white  flex justify-between font-bold text-base">
               Ưu đãi:{" "}

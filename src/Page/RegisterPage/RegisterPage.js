@@ -22,12 +22,12 @@ export default function RegisterPage() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div className="h-full p-10  pageRegister w-full">
-      <div className="content container mx-auto mt-10 p-10 rounded-xl ">
-        <div className="animate ">
+    <div className="h-screen mb:p-0 sm:p-0 md:p-10 flex justify-center items-center  page w-screen">
+      <div className="bg-black flex items-center container mx-auto mb:p-0 sm:p-0 md:p-10 rounded-xl ">
+        <div className="animate mb:hidden sm:hidden md:block">
           <LoginAnimate />
         </div>
-        <div className="form p-5 ">
+        <div className="p-5 mb:w-full sm:w-full md:w-2/4 ">
           <h1 className="text-center text-3xl my-5 font-bold text-red-600">
             Đăng Ký
           </h1>
@@ -130,7 +130,7 @@ export default function RegisterPage() {
                 Đăng Ký
               </button>
             </div>
-            <p className="text-white mt-5 flex items-center justify-end">
+            <p className="text-white text-center w-full mt-5 flex items-center justify-center">
               Bạn đã có tài khoản?
               <NavLink to="/login" className="ml-2">
                 <div className="font-bold text-red-600" href="">
