@@ -28,7 +28,7 @@ export default function UserNav() {
           />
           <button
             to="manager"
-            className="mb:py-[12px] mb:mt-[16px] mb:w-full sm:w-full  font-bold flex items-center hover:text-red-500 transition duration-300 "
+            className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 mb:w-full sm:w-full  font-bold flex items-center hover:text-red-500 transition duration-300 "
             onClick={() => {
               if (userInfo.maLoaiNguoiDung === "QuanTri") {
                 history("/manager");
@@ -49,15 +49,16 @@ export default function UserNav() {
                 history("/login");
               }, 1000);
             }}
-            className="mb:py-[12px] mb:mt-[16px] w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 "
+            className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 "
           >
-            <MdOutlineLogout className="mr-2 text-xl" /> Đăng Xuất
+            <MdOutlineLogout className="mr-2 text-xl" />{" "}
+            <span className="w-[5rem]">Đăng Xuất</span>
           </button>
         </div>
       );
     } else {
       return (
-        <div className="flex items-center  space-x-5">
+        <div className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 ">
           <button
             onClick={() => {
               window.location.href = "/login";
@@ -68,7 +69,7 @@ export default function UserNav() {
             Đăng Nhập
           </button>
           <NavLink to="/register">
-            <button className="px-2 py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 ">
+            <button className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 ">
               <BsFillPersonPlusFill className="mr-2" />
               Đăng Kí
             </button>
