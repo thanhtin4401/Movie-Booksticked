@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserNav from "./UserNav";
 import { RiMovie2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import "./HeaderTheme.scss";
 export default function HeaderTheme() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   let handleIsOpenMenu = () => {
@@ -9,10 +10,10 @@ export default function HeaderTheme() {
   };
 
   return (
-    <div className="nav__wrapped w-full relative container ">
+    <div className="nav__wrapped  w-full  relative container ">
       <nav
         id="nav"
-        className="flex bg-[#000000ab] fixed z-10 w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4"
+        className="flex  bg-[#000000ab] fixed z-10 w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4"
       >
         <div className="block lg:hidden sm:block mb:block">
           <button
@@ -42,8 +43,8 @@ export default function HeaderTheme() {
         </div>
         <div
           className={`nav__menu w-full block overflow-hidden flex-grow lg:flex lg:items-center lg:w-auto text-white mb:order-1 sm:order-1 md:order-1 lg:order-none ${
-            isOpenMenu ? "mb:h-full sm:h-full" : "mb:h-0 sm:h-0"
-          } transition-all lg:h-full lg:opacity-100 text-center`}
+            isOpenMenu ? "mb:h-[355px] sm:h-[355px]" : "mb:h-0 sm:h-0"
+          } transition-all ease-in  lg:h-full duration-300 lg:opacity-100 text-center`}
         >
           <div className=" justify-center font-bold nav__links text-sm lg:flex-grow mb:mr-0 sm:mr-0 lg:mr-5 lg:flex">
             <a
