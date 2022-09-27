@@ -57,7 +57,7 @@ export default function UserNav() {
       );
     } else {
       return (
-        <div className="flex items-center  space-x-5">
+        <div className="flex mb:flex-col sm:flex-col lg:flex-row mb:items-start sm:items-start lg:space-x-5 lg:items-center">
           <button
             onClick={() => {
               window.location.href = "/login";

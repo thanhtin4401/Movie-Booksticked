@@ -46,21 +46,22 @@ export default function HeaderTheme() {
           } transition-all lg:h-full lg:opacity-100 text-center`}
         >
           <div className=" justify-center font-bold nav__links text-sm lg:flex-grow mb:mr-0 sm:mr-0 lg:mr-5 lg:flex">
+            
             <a
               className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
-            >
-              Cụm Rạp
-            </a>
-            <a
-              className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
+              href="#listMovie"
             >
               Lịch Chiếu
             </a>
             <a
               className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
+              href="#cumRap"
+            >
+              Cụm Rạp
+            </a>
+            <a
+              className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
+              href="#gioiThieu"
             >
               Giới Thiệu
             </a>
