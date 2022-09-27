@@ -57,7 +57,7 @@ export default function SearchMovie() {
 
    }
   return (
-    <div className="p-2 rounded bg-white lg:block">
+    <div className="p-2 rounded bg-white md:hidden sm:hidden mb:hidden lg:block">
       <Form
       className="flex items-center space-x-2 "
         name="basic"

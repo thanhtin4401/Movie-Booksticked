@@ -43,7 +43,7 @@ export default function ListMovie() {
   };
   return (
     <div className="container mx-auto my-7 " id="listMovie">
-      <div className="search my-10 mx-20 space-x-2 flex items-center justify-between ">
+      <div className="search my-10 mx-20 space-x-2 flex items-center md:justify-center sm:justify-center mb:justify-center lg:justify-between ">
         <SearchMovie/>
         <div className="flex items-center p-1 bg-white rounded">
         <input
