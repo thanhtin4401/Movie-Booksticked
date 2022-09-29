@@ -58,18 +58,19 @@ export default function UserNav() {
       );
     } else {
       return (
-        <div className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 ">
+        // <div className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 ">
+        <div className="flex mb:flex-col sm:flex-col lg:flex-row mb:items-start sm:items-start lg:space-x-5 lg:items-center ">
           <button
             onClick={() => {
               window.location.href = "/login";
             }}
-            className="px-2 py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 "
+            className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 "
           >
             <MdOutlineLogin className="mr-2 text-xl" />
             Đăng Nhập
           </button>
-          <NavLink to="/register">
-            <button className="mb:py-[12px] mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300 ">
+          <NavLink to="/register" className="w-full">
+            <button className="mb:py-[12px] justify-center mb:mt-[16px] sm:py-[12px] sm:mt-[16px] lg:mt-0 w-full sm: lg:px-2 lg:py-2 rounded font-bold flex items-center transition ease-in-out delay-15 hover:bg-red-500 duration-300  ">
               <BsFillPersonPlusFill className="mr-2" />
               Đăng Kí
             </button>

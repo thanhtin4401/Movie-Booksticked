@@ -43,7 +43,7 @@ export default function HeaderTheme() {
         </div>
         <div
           className={`nav__menu w-full block overflow-hidden flex-grow lg:flex lg:items-center lg:w-auto text-white mb:order-1 sm:order-1 md:order-1 lg:order-none ${
-            isOpenMenu ? "mb:h-[355px] sm:h-[355px]" : "mb:h-0 sm:h-0"
+            isOpenMenu ? "mb:h-[320px] sm:h-[320px]" : "mb:h-0 sm:h-0"
           } transition-all ease-in  lg:h-full duration-300 lg:opacity-100 text-center`}
         >
           <div className=" justify-center font-bold nav__links text-sm lg:flex-grow mb:mr-0 sm:mr-0 lg:mr-5 lg:flex">
@@ -66,7 +66,7 @@ export default function HeaderTheme() {
               Giới Thiệu
             </a>
           </div>
-          <div>
+          <div className="lg:min-w-[16rem]">
             <UserNav />
           </div>
         </div>
