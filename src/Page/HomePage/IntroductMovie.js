@@ -2,7 +2,7 @@ import React from "react";
 import "./IntroductMovie.modul.scss";
 export default function IntroductMovie() {
   return (
-    <div className="intro">
+    <div className="intro" id="gioiThieu">
       <div className="container mx-auto my-7">
         <div className="flex items-center justify-around lg:flex md:flex-col sm:flex-col mb:flex-col">
           <div className="introLeft w-50 text-center ">

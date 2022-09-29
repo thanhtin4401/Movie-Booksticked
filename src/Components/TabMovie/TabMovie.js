@@ -71,10 +71,13 @@ export default function TabMovie() {
     );
   };
   return (
-    <div className="container theaterTab mb:overflow-scroll sm:overflow-scroll lg:mx-20 lg:p-10 mb:w-full  lg:w-10/12">
+    <div
+      id="cumRap"
+      className=" mb:hidden flex justify-center theaterTab mb:overflow-scroll sm:overflow-scroll lg:mx-20 lg:p-10 mb:w-full "
+    >
       {/* {isLoading ? <SpinnerComponent/> : ""}   */}
       <Tabs
-        className="mb:w-[60rem] sm:w-[60rem] lg:w-full"
+        className="mb:w-[60rem] lg:w-[80rem] sm:w-[60rem]"
         tabPosition="left"
         defaultActiveKey="1"
         onChange={onChange}
