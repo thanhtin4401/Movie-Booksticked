@@ -45,10 +45,15 @@ export default function SearchMovie() {
         value: cumRapChieu.maCumRap
       }
        })
+      // console.log(cumRap);
+      // return {
+      //   lable : cumRap.tenHeThongRap,
+      //   value: cumRap.maHeThongRap
+      // }
      })
   }
   const handleChangeCumRap = (values,options) => { 
-    console.log("ng")
+    console.log(options)
    }
    const converSelectLichChieu = () => { 
 

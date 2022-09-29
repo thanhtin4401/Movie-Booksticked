@@ -33,7 +33,7 @@ export default function ListMovie() {
       .filter((item) => item.hinhAnh !== null)
       .map((item, index) => {
         return (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <NavLink to={`detail/${item.maPhim}`} key={index}>
               <MoveiItem movie={item} />
             </NavLink>
@@ -71,7 +71,7 @@ export default function ListMovie() {
           navigation={true}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 4500,
             disableOnInteraction: false,
           }}
           breakpoints={{
