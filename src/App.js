@@ -53,7 +53,7 @@ function App() {
           />
           <Route
             path="/booktickets/:id"
-            element={<LayoutAdmin Component={BookTicketsPage} />}
+            element={<Layout Component={BookTicketsPage} />}
           />
           <Route
             path="/manager/calendarmovie/:movieID"

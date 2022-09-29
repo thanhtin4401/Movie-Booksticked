@@ -29,7 +29,7 @@ export default function HeaderTheme() {
           navbar
             ? "bg-black  border-white drop-shadow-[0_35px_35px_rgba(255,255,255,0.25)]"
             : " bg-[#000000ab] border-[#000000ab]"
-        }  fixed z-10  border-b-[0.2rem] w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4`}
+        }  fixed z-10  border-b-[1px] w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4`}
       >
         <div className="block lg:hidden sm:block mb:block">
           <button
