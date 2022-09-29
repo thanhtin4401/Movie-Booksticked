@@ -5,15 +5,31 @@ import { NavLink } from "react-router-dom";
 import "./HeaderTheme.scss";
 export default function HeaderTheme() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [navbar, setNavbar] = useState(false);
   let handleIsOpenMenu = () => {
     setIsOpenMenu((current) => !current);
+    setNavbar(true);
   };
+
+  const changeBackground = () => {
+    if (window.scrollY >= 80) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+      // }
+    }
+  };
+  window.addEventListener("scroll", changeBackground);
 
   return (
     <div className="nav__wrapped  w-full  relative container ">
       <nav
         id="nav"
-        className="flex  bg-[#000000ab] fixed z-10 w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4"
+        className={`flex transition-all ${
+          navbar
+            ? "bg-black  border-white drop-shadow-[0_35px_35px_rgba(255,255,255,0.25)]"
+            : " bg-[#000000ab] border-[#000000ab]"
+        }  fixed z-10  border-b-[0.2rem] w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4`}
       >
         <div className="block lg:hidden sm:block mb:block">
           <button
@@ -49,19 +65,19 @@ export default function HeaderTheme() {
           <div className=" justify-center font-bold nav__links text-sm lg:flex-grow mb:mr-0 sm:mr-0 lg:mr-5 lg:flex">
             <a
               className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
-            >
-              Cụm Rạp
-            </a>
-            <a
-              className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
+              href="#listMovie"
             >
               Lịch Chiếu
             </a>
             <a
               className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
-              href=""
+              href="#cumRap"
+            >
+              Cụm Rạp
+            </a>
+            <a
+              className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
+              href="#gioiThieu"
             >
               Giới Thiệu
             </a>

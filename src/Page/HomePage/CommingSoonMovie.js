@@ -22,7 +22,7 @@ export default function CommingSoonMovie() {
     dispatch(getMovieListActionService());
   }, []);
   let movieComming = movieList.filter((item) => item.sapChieu == true);
-  const [comming, setComming] = useState(movieComming[0]);
+  const [comming, setComming] = useState(movieComming[2]);
 
   const renderComming = () => {
     return (
@@ -81,7 +81,7 @@ export default function CommingSoonMovie() {
       .filter((item) => item.hinhAnh !== null)
       .map((item, index) => {
         return (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <div
               className=""
               onClick={() => {
@@ -118,7 +118,7 @@ export default function CommingSoonMovie() {
           navigation={true}
           loop={true}
           autoplay={{
-            delay: 1500,
+            delay: 3500,
             disableOnInteraction: false,
           }}
           breakpoints={{
