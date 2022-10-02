@@ -70,7 +70,7 @@ export default function HeaderTheme() {
               Lịch Chiếu
             </a>
             <a
-              className="hover:text-red-500 block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
+              className="hover:text-red-500 mb:hidden block mt-4 lg:inline-block lg:mt-0 mb:py-3 mb:ml-0 sm:ml-0 text-left sm:py-3 lg:py-0 mb:mr-0 sm:mr-0 lg:mr-4"
               href="#cumRap"
             >
               Cụm Rạp

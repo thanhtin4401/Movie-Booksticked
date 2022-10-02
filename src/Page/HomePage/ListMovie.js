@@ -43,18 +43,18 @@ export default function ListMovie() {
   };
   return (
     <div className="container mx-auto my-7 " id="listMovie">
-      <div className="search my-10 mx-20 space-x-2 flex items-center md:justify-center sm:justify-center mb:justify-center lg:justify-between ">
-        <SearchMovie/>
+      <div className="search my-10 mx-20 space-x-2 flex items-center md:justify-center sm:justify-center mb:justify-center lg:ustify-center ">
+        {/* <SearchMovie /> */}
         <div className="flex items-center p-1 bg-white rounded">
-        <input
-          className="movie-search py-2 px-5 rounded border-none mr-2 text-black"
-          type="text"
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Tìm Kiếm..."
-        />
-        <button className="py-2 px-5 rounded transition ease-in-out delay-15 hover:scale-110 bg-red-600 duration-300 ">
-          <AiOutlineSearch className="font-bold text-2xl" />
-        </button>
+          <input
+            className="movie-search py-2 px-5 rounded border-none mr-2 text-black"
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Tìm Kiếm..."
+          />
+          <button className="py-2 px-5 rounded transition ease-in-out delay-15 hover:scale-110 bg-red-600 duration-300 ">
+            <AiOutlineSearch className="font-bold text-2xl" />
+          </button>
         </div>
       </div>
       {/* <div className="grid mb:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb:mx-10 md:mx-10 lg:mx-20">

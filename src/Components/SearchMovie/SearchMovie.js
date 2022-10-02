@@ -42,29 +42,21 @@ export default function SearchMovie() {
   useEffect(() => {
     handleRenderCumRap();
   }, [cumRap]);
+
   const handleRenderCumRap = () => {
     let containData = [];
+
     cumRap?.forEach((cumRap, i) => {
-      // console.log("cumRap.cumRapChieu", cumRap.cumRapChieu);
       cumRap.cumRapChieu?.forEach((cumRapChieu, index) => {
-        // console.log("lichCHieu", cumRapChieu.lichChieuPhim);
+        // console.log("lichCHieu", cumRapChieu);
         let data = {
           label: cumRapChieu.tenCumRap,
           value: cumRapChieu.maCumRap,
         };
         containData.push(data);
-        console.log("data", data);
-        // return console.log("data", data);
       });
-
-      // return containData;
-
-      // return {
-      //   lable: cumRap.tenHeThongRap,
-      //   value: cumRap.maHeThongRap,
-      // };
     });
-    console.log("containData", containData);
+
     setCum(containData);
   };
 
@@ -74,6 +66,10 @@ export default function SearchMovie() {
   };
   const handleChangeCumRap = (values, options) => {
     console.log(options);
+    console.log("hhello");
+    let lichChieuPhim = "hello2222";
+    console.log("lichChieuPhim", lichChieuPhim);
+    // let lichChieu = cum.find(({ maCumRap }) => maCumRap === "megags-cao-thang");
   };
   const converSelectLichChieu = () => {};
   const handleChangeLichChieu = () => {};
