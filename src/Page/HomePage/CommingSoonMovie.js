@@ -15,14 +15,23 @@ import "swiper/css/navigation";
 
 export default function CommingSoonMovie() {
   let dispatch = useDispatch();
+  const [comming, setComming] = useState([null]);
   let { movieList } = useSelector((state) => {
     return state.movieReducer;
   });
   useEffect(() => {
     dispatch(getMovieListActionService());
+    handleRenderComingMovie();
   }, []);
-  let movieComming = movieList.filter((item) => item.sapChieu == true);
-  const [comming, setComming] = useState(movieComming[2]);
+  useEffect(() => {
+    handleRenderComingMovie();
+  }, [movieList]);
+  const handleRenderComingMovie = () => {
+    let movieComming = movieList?.filter((item) => item.sapChieu == true);
+    setComming(movieComming[2]);
+    // console.log(movieComming[2].moTa);
+  };
+  // console.log("comming", comming.moTa.length);
 
   const renderComming = () => {
     return (
@@ -35,9 +44,9 @@ export default function CommingSoonMovie() {
           {moment(comming?.ngayKhoiChieu).format("DD-MM-YYYY ")}
         </h1>
         <p className="">
-          {comming?.moTa.length < 300
-            ? comming?.moTa
-            : comming?.moTa.slice(0, 300) + "..."}
+          {comming.moTa?.length < 300
+            ? comming.moTa
+            : comming.moTa?.slice(0, 300) + "..."}
         </p>
         <NavLink to={`detail/${comming?.maPhim}`}>
           <button className="px-5 py-2 my-3 mr-3 bg-red-600 rounded font-bold transition ease-in-out delay-15 hover:-translate-y-1 hover:scale-110 hover:bg-red-700 duration-300">

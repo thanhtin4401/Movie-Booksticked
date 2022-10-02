@@ -10,7 +10,7 @@ export default function SearchMovie() {
   let { movieList } = useSelector((state) => {
     return state.movieReducer;
   });
-  
+
   let [cumRap, setCumRap] = useState([]);
   let [lichChieu, setLichChieu] = useState([]);
   const onFinish = (values) => {
@@ -21,50 +21,66 @@ export default function SearchMovie() {
     console.log("Failed:", errorInfo);
   };
   const convertSelectMovie = () => {
-    return movieList?.map((movie, index) => ({
+    let data = movieList?.map((movie, index) => ({
       label: movie.tenPhim,
       value: movie.maPhim,
     }));
+
+    return data;
   };
   const handleChangePhim = (values, options) => {
     movieService
       .getInfoShowTimes(values)
       .then((res) => {
-        setCumRap(res.data.content.heThongRapChieu)
+        setCumRap(res.data.content.heThongRapChieu);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const convertSelectCumRap= () => { 
-    return cumRap?.map((cumRap,i) => { 
-      return cumRap.cumRapChieu.map((cumRapChieu,index) => { 
-       console.log(cumRapChieu)
-      return {
-        label : cumRapChieu.tenCumRap,
-        value: cumRapChieu.maCumRap
-      }
-       })
-      // console.log(cumRap);
+  const [cum, setCum] = useState([]);
+  useEffect(() => {
+    handleRenderCumRap();
+  }, [cumRap]);
+  const handleRenderCumRap = () => {
+    let containData = [];
+    cumRap?.forEach((cumRap, i) => {
+      // console.log("cumRap.cumRapChieu", cumRap.cumRapChieu);
+      cumRap.cumRapChieu?.forEach((cumRapChieu, index) => {
+        // console.log("lichCHieu", cumRapChieu.lichChieuPhim);
+        let data = {
+          label: cumRapChieu.tenCumRap,
+          value: cumRapChieu.maCumRap,
+        };
+        containData.push(data);
+        console.log("data", data);
+        // return console.log("data", data);
+      });
+
+      // return containData;
+
       // return {
-      //   lable : cumRap.tenHeThongRap,
-      //   value: cumRap.maHeThongRap
-      // }
-     })
-  }
-  const handleChangeCumRap = (values,options) => { 
-    console.log(options)
-   }
-   const converSelectLichChieu = () => { 
+      //   lable: cumRap.tenHeThongRap,
+      //   value: cumRap.maHeThongRap,
+      // };
+    });
+    console.log("containData", containData);
+    setCum(containData);
+  };
 
-  }
-  const handleChangeLichChieu = () => { 
-
-   }
+  const convertSelectCumRap = () => {
+    let cumRap = cum;
+    return cumRap;
+  };
+  const handleChangeCumRap = (values, options) => {
+    console.log(options);
+  };
+  const converSelectLichChieu = () => {};
+  const handleChangeLichChieu = () => {};
   return (
     <div className="p-2 rounded bg-white md:hidden sm:hidden mb:hidden lg:block">
       <Form
-      className="flex items-center space-x-2 "
+        className="flex items-center space-x-2 "
         name="basic"
         labelCol={{
           span: 8,
@@ -78,25 +94,27 @@ export default function SearchMovie() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-          <Select 
+        <Select
           className="bg-black"
-            options={convertSelectMovie()}
-            onChange={handleChangePhim}
-            placeholder="Chọn Phim"
-          />
-          <Select 
-            options={convertSelectCumRap()}
-            onChange={handleChangeCumRap}
-            placeholder="Chọn Cụm Rạp"
-          />
+          options={convertSelectMovie()}
+          onChange={handleChangePhim}
+          placeholder="Chọn Phim"
+        />
+        <Select
+          options={convertSelectCumRap()}
+          onChange={handleChangeCumRap}
+          placeholder="Chọn Cụm Rạp"
+        />
 
-          <Select 
-            options={converSelectLichChieu()}
-            onChange={handleChangeCumRap}
-            placeholder="Chọn Lịch Chiếu"
-          >
-          </Select>
-          <button className="px-4 py-1 rounded text-white bg-red-600 " type="primary">
+        <Select
+          options={converSelectLichChieu()}
+          onChange={handleChangeCumRap}
+          placeholder="Chọn Lịch Chiếu"
+        ></Select>
+        <button
+          className="px-4 py-1 rounded text-white bg-red-600 "
+          type="primary"
+        >
           Đặt vé nhanh
         </button>
       </Form>
