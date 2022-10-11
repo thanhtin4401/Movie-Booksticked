@@ -65,10 +65,7 @@ export default function SearchMovie() {
     return cumRap;
   };
   const handleChangeCumRap = (values, options) => {
-    console.log(options);
-    console.log("hhello");
-    let lichChieuPhim = "hello2222";
-    console.log("lichChieuPhim", lichChieuPhim);
+    
     // let lichChieu = cum.find(({ maCumRap }) => maCumRap === "megags-cao-thang");
   };
   const converSelectLichChieu = () => {};

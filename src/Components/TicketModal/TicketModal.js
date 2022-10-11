@@ -8,9 +8,7 @@ import "./TicketModal.modul.scss";
 const { TabPane } = Tabs;
 
 export default function TicketModal({ open, close, id }) {
-  const onChange = (key) => {
-    console.log(key);
-  };
+  const onChange = (key) => {};
   const [theater, setTheater] = useState([]);
   useEffect(() => {
     movieService

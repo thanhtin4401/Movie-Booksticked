@@ -29,9 +29,7 @@ export default function CommingSoonMovie() {
   const handleRenderComingMovie = () => {
     let movieComming = movieList?.filter((item) => item.sapChieu == true);
     setComming(movieComming[2]);
-    // console.log(movieComming[2].moTa);
   };
-  // console.log("comming", comming.moTa.length);
 
   const renderComming = () => {
     return (
