@@ -5,7 +5,7 @@ export default function SpinnerComponent() {
   let { isLoading } = useSelector((state) => {
     return state.spinnerReducer;
   });
-  console.log(isLoading);
+
   return isLoading ? (
     <div
       style={{ backgroundColor: "rgba(0, 0, 0,0.9)", zIndex: "99" }}

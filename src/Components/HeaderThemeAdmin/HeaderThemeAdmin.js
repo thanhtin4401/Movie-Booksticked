@@ -2,17 +2,33 @@ import React, { useState } from "react";
 import UserNav from "./UserNav";
 import { RiMovie2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+// import UserNav from "./UserNav";
 export default function HeaderThemeAdmin() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [navbar, setNavbar] = useState(false);
   let handleIsOpenMenu = () => {
     setIsOpenMenu((current) => !current);
+    setNavbar(true);
   };
 
+  const changeBackground = () => {
+    if (window.scrollY >= 80) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+      // }
+    }
+  };
+  window.addEventListener("scroll", changeBackground);
   return (
-    <div className="nav__wrapped w-full relative container ">
+    <div className="nav__wrapped  w-full  relative container ">
       <nav
         id="nav"
-        className="flex bg-[#000000ab] fixed z-10 w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4"
+        className={`flex transition-all ${
+          navbar
+            ? "bg-black  border-white drop-shadow-[0_35px_35px_rgba(255,255,255,0.25)]"
+            : " bg-[#000000ab] border-[#000000ab]"
+        }  fixed z-10  border-b-[1px] w-full items-center justify-between flex-wrap mb:px-8 sm:px-8 md:px-16 top-0 py-4`}
       >
         <div className="block lg:hidden sm:block mb:block">
           <button
@@ -42,11 +58,12 @@ export default function HeaderThemeAdmin() {
         </div>
         <div
           className={`nav__menu w-full block overflow-hidden flex-grow lg:flex lg:items-center lg:w-auto text-white mb:order-1 sm:order-1 md:order-1 lg:order-none ${
-            isOpenMenu ? "mb:h-0 sm:h-full" : "mb:h-0 sm:h-0"
-          } transition-all lg:h-full lg:opacity-100 text-center`}
-        ></div>
-        <div>
-          <UserNav />
+            isOpenMenu ? "mb:h-[120px] sm:h-[120px]" : "mb:h-0 sm:h-0"
+          } transition-all ease-in  lg:h-full duration-300 lg:opacity-100 text-center`}
+        >
+          <div className="lg:min-w-[16rem]">
+            <UserNav />
+          </div>
         </div>
       </nav>
     </div>

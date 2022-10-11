@@ -22,7 +22,6 @@ export const getUserActionService = (account) => {
     managerService
       .getDetailUser(account)
       .then((res) => {
-        console.log("data", res.data.content);
         dispatch({
           type: GET_INFOR_USER,
           payload: res.data.content,

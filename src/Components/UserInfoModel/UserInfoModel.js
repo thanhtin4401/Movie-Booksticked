@@ -18,7 +18,7 @@ export default function UserInfoModel({ open, close }) {
       });
   }, []);
   if (!open) return null;
-  console.log(info);
+
   const getIdSeat = (danhSachGhe) => {
     return danhSachGhe
       .reduce((listSeat, seat) => {
